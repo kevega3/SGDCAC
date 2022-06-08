@@ -1,0 +1,119 @@
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+body{
+  font-family: 'Raleway', sans-serif!important;
+}
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;} 
+}
+.logo{
+  width: 100%;
+}
+#form{
+  width: 100%;
+  background-color: #112797;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin-bottom: 15px;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  padding: 5px 10px;
+}
+
+.table-form{
+  width: 80%;
+}
+.table-form td{
+  padding-bottom: 11px;
+  text-align: right;
+  font-weight: 600;
+}
+.campo{
+  width: 95%;
+  max-width: 215px;
+  height: 25px;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  font-weight: 100;
+}
+
+#textarea{
+  width: 95%;
+  max-width: 360px;
+  height: 200px;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  font-weight: 100;
+}
+.fa-question-circle{
+  color: #76C35E;
+  margin-left: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+input[type=submit]{
+  background-color: #112797;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 40px;
+}
+input[type=submit]:hover{
+  background: #1a73e8;
+}
+#listaDeArchivos li{
+  margin-bottom: 15px;
+}
+html input[disabled]{
+ background: #eeeeee;
+ color: #ababab;
+ cursor: not-allowed;
+}
+html input[disabled]:hover{
+ background: #eeeeee;
+ color: #ababab;
+ cursor: not-allowed; 
+}
+.loader {
+  display: none;
+}
+
+.loader.active {
+  display: block;
+  position: fixed; /* Stay in place */
+  z-index: 4; /* Sit on top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
