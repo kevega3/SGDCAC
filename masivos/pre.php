@@ -26,7 +26,7 @@ class Previsualizar{
 
 		include ('previsualizar.php');
 		$consecutivo = $this->consecutivo;
-		$mpdf = new PDF();
+		$mpdf = new PDF(['format' => 'Letter']);
 		$mpdf->setFecha($this->fechaconsecutivo);
 
 		$html = '
@@ -34,6 +34,7 @@ class Previsualizar{
 		<style>
 		body{
 			font-family:"Calibri, sans-serif";
+			line-height: 20px;
 		}
 		@page {
 			margin-top: 120px;
@@ -45,7 +46,7 @@ class Previsualizar{
 		.date{
 			width: 100%;
 			text-align: right;
-			padding-top: -3%;
+			padding-top: -4.5%;
 			font-size: 11px;		
 		}
 		.cuerpo{
@@ -56,7 +57,7 @@ class Previsualizar{
 			text-align: justify;
 		}
 		.firma{
-			padding-top: 50px;
+			padding-top: 0px;
 			padding-left: 50px;
 			font-size: 13px;
 		}
@@ -80,9 +81,10 @@ class Previsualizar{
 		</div>
 
 		<div class="firma">
-		<img style="width: 150px;" src="images/firma.png"/><br>
-		<b>Lizbeth Acuña Merchán</b><br>
-		Directora Ejecutiva
+		Atentamente,<br><br>
+		<img style="width: 300px;" src="images/firma.jpg"/><br>
+		<b>Lizbeth Acuña Merchán<br>
+		Directora ejecutiva</b>
 		</div>
 
 		<body>

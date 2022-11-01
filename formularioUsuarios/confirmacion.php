@@ -40,15 +40,15 @@ $fila = $resultado->fetch_assoc();
 		<img src="../images/logo_color.svg" style="width: 50%;margin-left: auto;margin-right: auto;display: list-item;">
 		<br>
 		<br>
-		<center>Su solicitud ha sido registrada de forma exitosa con el radicado No. <b><?php echo $fila['numRadicado']; ?></b> con fecha <?php echo Date('Y-m-d'); ?>, hora <?php echo Date('h:i:s'); ?> y código de verificación <b><?php echo $fila['clave']; ?></b>. Por favor tenga en cuenta estos datos para que realice la consulta del estado a su solicitud a través de la página web de la Cuenta de Alto Costo. Puede consultarlo <a href="https://cuentadealtocosto.org/site/consultasolicitud/">aquí</a>.</center>
+		<center>Su solicitud ha sido registrada de forma exitosa con el radicado No. <b><?php echo $fila['numRadicado']; ?></b> con fecha <?php echo Date('Y-m-d'); ?>, hora <?php echo Date('h:i:s'); ?> y código de verificación <b><?php echo $fila['clave']; ?></b>. Por favor tenga en cuenta estos datos para que realice la consulta del estado a su solicitud a través de la página web de la Cuenta de Alto Costo. Puede consultarlo <a href="https://cuentadealtocosto.org/site/consultaweb/" target="_blank">aquí</a>.</center>
 		<br>
 		<center>Pulse continuar para terminar la solicitud y visualizar el documento en formato PDF. Si desea almacenelo en su disco o imprimirlo.</center>
 		<br>
 		<div class="w3-panel w3-pale-blue w3-border">
-			<center>Muchas gracias, hemos recibido su solicitud, la misma será tramitada en un tiempo estimado de tres días hábiles.</center>
+			<center>Muchas gracias, hemos recibido su solicitud, la misma será tramitada y en los próximos días podrá visualizar su estado.</center>
 		</div>
 		<br>
-		<center><a href="descargarPeticion.php?Id=<?=md5($key.$fila['numRadicado'])?>" target="_blank"><button id="boton" style="background: #70c652;">Continuar</button></a><a href="index.php"><button id="boton" style="background: red;">Cerrar</button></a></center>
+		<center><a href="descargarPeticion.php?Id=<?=md5($key.$fila['numRadicado'])?>" target="_blank"><button id="boton" style="background: #70c652;">Ver documento</button></a><a href="form.php"><button id="boton" style="background: red;">Cerrar</button></a></center>
 	</div>
 </body>
 </html>
@@ -102,7 +102,7 @@ class enviarResumen{
 		<div style='background-image: url(https://cuentadealtocosto.org/site/wp-content/uploads/2022/02/bannercorrespondencia.jpg);background-size: auto;background-repeat: no-repeat;height: 150px;'></div>
 		<div style='padding: 0px 30px;'>
 		<p>Hola {$remitente}.</p>
-		<p>Su solicitud ha sido registrada de forma exitosa con el radicado No. <b>{$radicado}</b> con fecha y hora {$fechaRadicado} y código de verificación <b>{$clave}</b>. Por favor tenga en cuenta estos datos para que realice la consulta del estado a su solicitud a través de la página web de la <a href='http://192.168.1.11:81/sgdcac/consultaWeb/'>Cuenta de Alto Costo</a>. Puede descargar el archivo de radicado dando <a href='http://192.168.1.11:81/sgdcac/formularioUsuarios/descargarPeticion.php?Id={$descargar}'>clic aquí</a></p>
+		<p>Su solicitud ha sido registrada de forma exitosa con el radicado No. <b>{$radicado}</b> con fecha y hora {$fechaRadicado} y código de verificación <b>{$clave}</b>. Por favor tenga en cuenta estos datos para que realice la consulta del estado a su solicitud a través de la página web de la <a href='https://cuentadealtocosto.org/site/consultaweb/'>Cuenta de Alto Costo</a>. Puede descargar el archivo de radicado dando <a href='https://cuentadealtocosto.org/sgdcac/formularioUsuarios/descargarPeticion.php?Id={$descargar}'>clic aquí</a></p>
 		</div>
 		</div>
 		</body>

@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+date_default_timezone_set('America/Bogota'); 
 
 if (!isset($_SESSION['usuario'])) {
 	header ("Location: ../login/index.php");
@@ -10,6 +11,12 @@ require("class.phpmailer.php");
 require("class.smtp.php");
 
 class Gestionar{
+
+	private $idPeticion;
+	private $smtpHost;
+	private $smtpUsuario;
+	private $smtpClave;
+	private $mensaje;
 
 	public function gestionDireccion(){
 
@@ -51,17 +58,16 @@ class Gestionar{
 		}
 
 	}
-	public function notificar(){
+	public function notificarUsuario(){
 
 		require("conexion.php");
 
-		$idPeticion = $_POST['id'];
 		$key = 'cu3nt4_d3_4lt0_c05t0';
-		$enlace = md5($key.$idPeticion);
+		$enlace = md5($key.$this->idPeticion);
 		$sentencia = "SELECT *, h.RutaArchivo AS archivo 
-		FROM Peticiones P 
+		FROM peticiones P 
 		INNER JOIN historialrespuestas h ON P.IdRespuesta = h.IdRespuesta 
-		WHERE P.numRadicado = '$idPeticion'";
+		WHERE P.numRadicado = '$this->idPeticion'";
 		$resultado = $mysqli->query($sentencia);
 		$fila = $resultado->fetch_assoc();
 
@@ -70,12 +76,6 @@ class Gestionar{
 		$fechaR = $fila['FechaCreacion'];
 		$tema = $fila['temaPeticion'];
 		$rutaArchivo = $fila['archivo'];
-
-
-		$smtpHost = "smtp.office365.com";  // Dominio alternativo brindado en el email de alta 
-		$smtpUsuario = "info@cuentadealtocosto.org";  // Mi cuenta de correo
-		$smtpClave = "jcvxrwvsldpmczhd";  // Mi contraseña
-		$mensaje = "Mensaje de la CAC";
 
 		$mail = new PHPMailer();
 		$mail->IsSMTP();
@@ -86,15 +86,15 @@ class Gestionar{
 
 
 		// VALORES A MODIFICAR //
-		$mail->Host = "smtp.office365.com"; 
-		$mail->Username = "info@cuentadealtocosto.org"; 
-		$mail->Password = "jcvxrwvsldpmczhd";
+		$mail->Host = $this->smtpHost; 
+		$mail->Username = $this->smtpUsuario; 
+		$mail->Password = $this->smtpClave;
 
 		$mail->From = "info@cuentadealtocosto.org"; // Email desde donde env�o el correo.
 		$mail->AddAddress($correoR); // Esta es la direcci�n a donde enviamos los datos del formulario
 
 		$mail->Subject = "Respuesta de radicado CAC"; // Este es el titulo del email.
-		$mensajeHtml = nl2br($mensaje);
+		$mensajeHtml = nl2br($this->mensaje);
 
 
 		$mail->Body = "
@@ -104,12 +104,12 @@ class Gestionar{
 		<div style='background-image: url(https://cuentadealtocosto.org/site/wp-content/uploads/2022/02/bannercorrespondencia.jpg);background-size: auto;background-repeat: no-repeat;height: 150px;'></div>
 		<div style='padding: 0px 30px;'>
 		<p>Hola {$nombreR}.</p>
-		<p>Se ha dado respuesta a su solictud con número de radicado <b>{$idPeticion}</b>. Para ver la respuesta, puede consultarla en nuestro sitio web teniendo en cuenta el número de radicado y la clave envíada al momento de radicar la información o puede descargar el documento de respuesta directamente.</p>
+		<p>Se ha dado respuesta a su solictud con número de radicado <b>{$this->idPeticion}</b>. Para ver la respuesta, puede consultarla en nuestro sitio web teniendo en cuenta el número de radicado y la clave envíada al momento de radicar la información o puede descargar el documento de respuesta directamente.</p>
 
 		<p>
 		<div style='width: 100%; background-color: red;'>
-		<a href='http://192.168.1.11:81/sgdcac/consultaWeb'><div style='width: 49%;background-color: #70C64E;color: #FFF;padding: 5px 0px;text-align: center;border-radius: 3px;float: left;'>Consultar</div></a>
-		<a href='http://192.168.1.11:81/sgdcac/files/{$rutaArchivo}'><div style='width: 49%;background-color: #112797;color: #FFF;padding: 5px 0px;text-align: center;border-radius: 3px;float: left;margin-left: 1%;'>Descargar</div></a>
+		<a href='https://cuentadealtocosto.org/site/consultaweb/'><div style='width: 49%;background-color: #70C64E;color: #FFF;padding: 5px 0px;text-align: center;border-radius: 3px;float: left;'>Consultar</div></a>
+		<a href='https://cuentadealtocosto.org/sgdcac/files/{$rutaArchivo}'><div style='width: 49%;background-color: #112797;color: #FFF;padding: 5px 0px;text-align: center;border-radius: 3px;float: left;margin-left: 1%;'>Descargar</div></a>
 		</div>
 		</p>
 		</div>
@@ -129,7 +129,7 @@ class Gestionar{
 		</tr>
 		<tr>
 		<td>{$fechaR}</td>
-		<td>{$idPeticion}</td>
+		<td>{$this->idPeticion}</td>
 		</tr>
 		<tr>
 		<td style='color: #17318e;font-size: 12px;font-weight: bolder;padding: 10px 0px;'>ASUNTO</td>
@@ -144,7 +144,7 @@ class Gestionar{
 		</html>
 		";
 
-		$mail->AltBody = "{$mensaje}";
+		$mail->AltBody = "{$this->mensaje}";
 
 		$mail->SMTPoptions = array(
 			'ssl' => array(
@@ -160,10 +160,85 @@ class Gestionar{
 			echo "Ocurrio un error en el envío de la información. Por favor comunicarse con el administrador.";
 		}
 	}
+
+	public function notificarResponsable(){
+		require("conexion.php");
+
+		$sentencia = "SELECT *, U.Correo AS CorreoR, U.Nombres AS NombresR FROM peticiones P
+		INNER JOIN usuarios U ON P.IdUsuarioAsignado = U.IdUsuario
+		WHERE numRadicado = '$this->idPeticion'";
+		$resultado = $mysqli->query($sentencia);
+		$row = $resultado->fetch_assoc();
+
+		$correoR = $row['CorreoR'];
+		$nombreR = $row['NombresR'];
+
+		$mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->SMTPAuth = true;
+		$mail->Port = 587; 
+		$mail->IsHTML(true); 
+		$mail->CharSet = "utf-8";
+
+		// VALORES A MODIFICAR //
+		$mail->Host = $this->smtpHost; 
+		$mail->Username = $this->smtpUsuario; 
+		$mail->Password = $this->smtpClave;
+
+		$mail->From = "info@cuentadealtocosto.org"; // Email desde donde env�o el correo.
+		$mail->AddAddress($correoR); // Esta es la direcci�n a donde enviamos los datos del formulario
+
+		$mail->Subject = "Aprobación de respuesta"; // Este es el titulo del email.
+		$mensajeHtml = nl2br($this->mensaje);
+
+		$mail->Body = "
+		<html>
+		<body>
+		<div style='width: fit-content; border: 1px solid lightgrey; border-radius: 3px;'>
+		<div style='background-image: url(https://cuentadealtocosto.org/site/wp-content/uploads/2022/02/bannercorrespondencia.jpg);background-size: auto;background-repeat: no-repeat;height: 150px;'></div>
+		<div style='padding: 0px 30px;'>
+		<p>Hola {$nombreR}.</p>
+		<p>Se ha aprobado la respuesta a la solictud con número de radicado <b>{$this->idPeticion}</b>.</p>
+
+		</div>
+		</div>
+		</body>
+		</html>
+		";
+
+		$mail->AltBody = "{$this->mensaje}";
+
+		$mail->SMTPoptions = array(
+			'ssl' => array(
+				'verify_peer' => false,
+				'verify_peer_name' => false,
+				'allow_self_signed' => true
+			)
+		);
+
+		$estadoEnvio = $mail->Send();
+		if ($estadoEnvio) {
+		}else{
+			echo "Ocurrio un error en el envío de la información. Por favor comunicarse con el administrador.";
+		}
+	}
+
+	public function setId($idPeticion){
+		$this->idPeticion = $idPeticion;
+	}
+	public function setVariablesSMTP($smtpHost,$smtpUsuario,$smtpClave,$mensaje){
+		$this->smtpHost = $smtpHost;  // Dominio alternativo brindado en el email de alta 
+		$this->smtpUsuario = $smtpUsuario;  // Mi cuenta de correo
+		$this->smtpClave = $smtpClave;  // Mi contraseña
+		$this->mensaje = $mensaje;
+	}
 } 
 $resultado = new Gestionar();
+$resultado->setId($_POST['id']);
+$resultado->setVariablesSMTP("smtp.office365.com","info@cuentadealtocosto.org","jcvxrwvsldpmczhd","Mensaje de la CAC");
 $resultado->gestionDireccion();
-$resultado->notificar();
+$resultado->notificarUsuario();
+$resultado->notificarResponsable();
 
 
 ?>

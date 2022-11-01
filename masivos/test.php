@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Test</title>
-	<script type="text/javascript" src="https://js.live.net/v7.2/OneDrive.js"></script>
+	<meta charset="UTF-8">
+	<title>Documento con una Capa</title>
+	<script src="../js/jquery.min.js"></script>
 </head>
 <body>
+	<form method="POST" action="test1.php" enctype="multipart/form-data">
+		<table class="table-form">
+			<tr>
+				<td style="text-align: left;">Subida de archivos:</td>
+				<td><input type="button" value="Agregar campo" onclick="crear_elemento();" style="float: right;"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div id="contenedor">
+						<li><input type="file" name="archivo[]" id="files"></li>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<input type="submit" name="guardar">
+	</form>
+
 	<script type="text/javascript">
-		function launchSaveToOneDrive(){
-			var odOptions = {
-				clientId: "1a4d686d-26a2-465b-ae28-b5e45a6302d6",
-				action: "save",
-				sourceInputElementId: "fileUploadControl",
-				sourceUri: "",
-				openInNewWindow: false,
-				viewType: "files",
-				nameConflictBehavior: false,
-				advanced: {},
-			success: function(files) { /* success handler */ },
-		progress: function(percent) { /* progress handler */ },
-	cancel: function() { /* cancel handler */ },
-error: function(error) { /* error handler */ }
-}
-OneDrive.save(odOptions);
-}
-</script>
+		var max = 0;
+		function crear_elemento(){
 
-<input id="fileUploadControl" name="fileUploadControl" type="file" />
-<button onclick="launchSaveToOneDrive()">Save to OneDrive</button>
+			var prueba = $("#files").val();
 
+			if (max <= 1) {
+				max++;
+				$('#contenedor').append('<li><input type="file" id="files'+max+'" name="archivo[]" required> <a onclick="eliminar_elemento(this);" class="fa" style="margin-top: -20px;"></a></li>');
+			}else{
+				alert('Solo se permiten 3 archivos');
+			}
+		}
+		function eliminar_elemento(valor){
+			max--;
+			valor.parentNode.parentNode.removeChild(valor.parentNode);
+		}
+	</script>
 </body>
 </html>

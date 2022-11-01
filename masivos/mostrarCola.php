@@ -140,7 +140,7 @@ Class ColaEnvios{
 			text-align: justify;
 		}
 		.firma{
-			padding-top: 50px;
+			padding-top: 0px;
 			padding-left: 50px;
 			font-size: 13px;
 		}
@@ -163,9 +163,10 @@ Class ColaEnvios{
 		</div>
 
 		<div class="firma">
-		<img style="width: 150px;" src="images/firma.png"/><br>
-		<b>Lizbeth Acuña Merchán</b><br>
-		Directora Ejecutiva
+		Atentamente,<br>
+		<img style="width: 300px;" src="images/firma.jpg"/><br>
+		<b>Lizbeth Acuña Merchán<br>
+		Directora ejecutiva</b>
 		</div>
 
 		<body>

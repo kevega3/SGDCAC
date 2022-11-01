@@ -21,22 +21,22 @@ class NuevoUSuario{
 			$correo = $_POST['correo'];
 			$pass = $_POST['pass'];
 
-			$insertar = "INSERT INTO `usuarios`(`IdEstado`, `Nombres`, `Apellidos`, `numIdent`, `Cargo`, `Correo`, `IdTipoUsuario`, `IdCoordinacion`, `Pass`) VALUES (1,'$nombres','$apellidos','$identificacion','$cargo','$correo','$tipousuario','$coordinacion','$pass')";
+			$insertar = "INSERT INTO `usuarios`(`IdEstado`, `Nombres`, `Apellidos`, `numIdent`, `Cargo`, `Correo`, `IdTipoUsuario`, `IdCoordinacion`, `Pass`,`intentos`) VALUES (1,'$nombres','$apellidos','$identificacion','$cargo','$correo','$tipousuario','$coordinacion','$pass','0')";
 			$save = $conn->prepare($insertar);
 
 			if ($save->execute()) {
 				echo "<script>alert('Se guardó correctamente.')</script>";
-				echo "<script>window.location.replace('Usuarios.php')</script>";
+				echo "<script>window.location.replace('usuarios.php')</script>";
 			}else{
 				echo "<script>alert('Algo salió mal, intentelo de nuevo.')</script>";
-				echo "<script>window.location.replace('Usuarios.php')</script>";
+				echo "<script>window.location.replace('usuarios.php')</script>";
 			}
 
 			$conn = null;
 
 		}else{
 			echo "<script>alert('Algo salió mal, intentelo de nuevo.')</script>";
-			echo "<script>window.location.replace('Usuarios.php')</script>";
+			echo "<script>window.location.replace('usuarios.php')</script>";
 		}
 	}
 }

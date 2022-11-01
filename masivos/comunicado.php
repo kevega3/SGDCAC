@@ -62,22 +62,25 @@ $fila = $resultado->fetch_assoc();
       <a href="../pages/peticionesPorAprobar.php" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-clock fa-fw"></i>  Por aprobar</a>
       <a href="../pages/peticionesAprobadas" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check-square fa-fw"></i>  Aprobadas</a>
       <a href="../pages/peticionesReasignadas.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-undo fa-fw"></i>  Reasignadas</a>
-      <a href="index.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-download fa-fw"></i>  Reportes</a>
+      <a href="../pages/peticionesSinRespuesta.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-comment-slash fa-fw"></i>  No respuesta</a>
     </div>
     <?php if ($_SESSION['tipoUsuario'] == 1 || $_SESSION['tipoUsuario'] == 2) {
 
       ?>
-<div class="w3-container">
-      <h5>Administración</h5>
-    </div>
-    <div class="w3-bar-block">
-      <a href="../pages/usuarios.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users-cog fa-fw"></i>  Usuarios</a>
-      <a href="../pages/files.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-folder-open fa-fw"></i>  Archivos</a>
-      <a href="../reportes/" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-file-download fa-fw"></i>  Reportes</a>
-      <a href="index.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fab fa-wpforms fa-fw"></i>  Masivos</a>
-      <a href="../pages/consecutivos.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-list-ol fa-fw"></i>  Consecutivos</a>
-    </div>
-<?php
+      <div class="w3-container">
+        <h5>Administración</h5>
+      </div>
+      <div class="w3-bar-block">
+        <?php
+        if ($_SESSION['tipoUsuario'] == 1) {?>
+          <a href="../pages/usuarios.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users-cog fa-fw"></i>  Usuarios</a>
+          <a href="../pages/files.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-folder-open fa-fw"></i>  Archivos</a>
+        <?php } ?>
+        <a href="../reportes/" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-file-download fa-fw"></i>  Reportes</a>
+        <a href="index.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fab fa-wpforms fa-fw"></i>  Masivos</a>
+        <a href="../pages/consecutivos.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-list-ol fa-fw"></i>  Consecutivos</a>
+      </div>
+      <?php
     }
     ?>
   </nav>
@@ -119,7 +122,7 @@ $fila = $resultado->fetch_assoc();
             <a href="colaEnvios.php?Id=<?php echo $id ?>"><label class="paso-inactivo">Cola de envíos</label></a>
           </div>
           <div class="w3-container w3-text-indigo" style="margin-top: 10%;">
-            <form action="guardartexto.php" method="POST" target="_blank"id="Form">
+            <form action="guardartexto.php" method="POST" id="Form" enctype="multipart/form-data">
               <input type="hidden" name="id" value="<?php echo $id ?>">
               <div class="w3-half">
                 <label><b>Nombre de comunicado</b></label>
@@ -138,19 +141,45 @@ $fila = $resultado->fetch_assoc();
                 <input class="w3-input w3-border w3-margin-bottom" type="text" name="asunto" required style="width: 90%;" value="<?php echo $fila['Asunto']; ?>">
               </div>
 
-              <div class="w3-half">
-                <label><b>Correo remitente</b></label>
-                <br>
-                <select class="w3-input w3-border w3-margin-bottom">
-                  <option>Seleccionar</option>
-                </select>
-              </div>
-
               <div class="w3-col" style="margin-bottom: 4%;">
                 <label><b>Cuerpo del correo:</b></label>
                 <br><br>
                 <textarea required style="height: 150px; width:100%;" name="cuerpo"><?php echo $fila['CuerpoCorreo']; ?></textarea>
               </div>
+
+              <div class="w3-half" style="margin-bottom: 4%;">
+                <label><b>Agregar adjuntos:</b></label>
+                <br><br>
+                <table class="table-form">
+                  <tr>
+                    <td style="text-align: left;">Subida de archivos:</td>
+                    <td><input type="button" value="+" onclick="crear_elemento();" style="float: right;"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div id="contenedor">
+                        <li><input type="file" name="archivo[]" id="files"></li>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="w3-half" style="margin-bottom: 4%;">
+                <label><b>Adjuntos:</b></label>
+                <?php 
+
+                  $anexos = "SELECT * FROM `adjuntosmasivos` WHERE IdComunicado = '$id'";
+                  $salida = $mysqli->query($anexos);
+
+                  while ($row = $salida->fetch_assoc()) {
+                    $ruta = $row['ubicacion'];
+                    ?>
+                    <li><a href="<?php echo $ruta ?>" target="_blank"><?php echo "<br>".$row['nombre'];?></a>  <a href="eliminarAdjunto.php?id=<?php echo $row['IdArchivo'].'&Cons='.$id; ?>" class="fa" style="margin-top: -20px;"></a></li>
+                    <?php } ?>
+              </div>
+
+
               <div class="w3-col">
                 <label><b>Cuerpo del documento</b></label><br><br>
                 <div id="editor" style="height: 400px; color:black;"><?php echo html_entity_decode($fila['Texto']); ?></div>
@@ -158,7 +187,7 @@ $fila = $resultado->fetch_assoc();
               </div>
               <div class="w3-col" style="margin-top: 2%;">
                 <button name="guardar" class="w3-btn w3-half w3-green" onclick="logHtmlContent()">Guardar</button>
-                <button name="previsualizar" target="_blank" class="w3-btn w3-half w3-blue" onclick="logHtmlContent()">Previsualizar</button>
+                <button name="previsualizar" formtarget="_blank" class="w3-btn w3-half w3-blue" onclick="logHtmlContent()">Previsualizar</button>
               </div>
               
             </form>
@@ -176,14 +205,31 @@ $fila = $resultado->fetch_assoc();
 
     <!-- End page content -->
   </div>
-<script src="../js/editor.js"></script>
-<script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/editor.js"></script>
+  <script>
 
-  function logHtmlContent() {
-    console.clear();
-    var test = quill.root.innerHTML;
-    document.getElementById("documento").value = test;
-  }
-</script>
+    function logHtmlContent() {
+      console.clear();
+      var test = quill.root.innerHTML;
+      document.getElementById("documento").value = test;
+    }
+    var max = 0;
+    function crear_elemento(){
+
+      var prueba = $("#files").val();
+
+      if (max <= 1) {
+        max++;
+        $('#contenedor').append('<li><input type="file" id="files'+max+'" name="archivo[]" required> <a onclick="eliminar_elemento(this);" class="fa" style="margin-top: -20px;"></a></li>');
+      }else{
+        alert('Solo se permiten 3 archivos');
+      }
+    }
+    function eliminar_elemento(valor){
+      max--;
+      valor.parentNode.parentNode.removeChild(valor.parentNode);
+    }
+  </script>
 </body>
 </html>

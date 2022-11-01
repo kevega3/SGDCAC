@@ -1,5 +1,6 @@
 <?php 
 include ("../formularioUsuarios/keys.php");
+date_default_timezone_set('America/Bogota'); 
 
 if ($_POST['google-response-token']) {
 
@@ -103,7 +104,7 @@ if ($_POST['google-response-token']) {
 				<div style='padding: 0px 30px;'>
 				<p>Hola {$nombreResponsable}.</p>
 				<p>Se ha registrado una observación en la respuesta de la solicitud con radicado <b>{$radicado}</b></p>
-				<p>Consúltala dando <a href='http://192.168.1.11:81/sgdcac/'>clic aquí</a></p>
+				<p>Consúltala dando <a href='https://cuentadealtocosto.org:81/sgdcac/'>clic aquí</a></p>
 				</div>
 				<div style='padding: 0px 30px;'>
 				<table style='width: 100%'>

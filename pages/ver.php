@@ -10,7 +10,7 @@ if(!isset($_GET["Id"])){
 }
 $id = $_GET["Id"];
 include ('conexion.php');
-$sentencia = "SELECT *, P.numRadicado, EP.Descripcion AS EstadoPeticion,TP.Descripcion AS TipoPeticion, TPS.Descripcion AS TipoPersona, TE.Descripcion AS TipoEmpresa, PA.Nombre AS Pais, DEP.Nombre AS Departamento, Mun.Descripcion AS Municipio, TPL.Descripcion AS Poblacion, HR.Respuesta AS Respuesta 
+$sentencia = "SELECT *, P.numRadicado, EP.Descripcion AS EstadoPeticion,TP.Descripcion AS TipoPeticion, TPS.Descripcion AS TipoPersona, TE.Descripcion AS TipoEmpresa, PA.Nombre AS Pais, DEP.Nombre AS Departamento, MUN.Descripcion AS Municipio, TPL.Descripcion AS Poblacion, HR.Respuesta AS Respuesta 
 FROM peticiones P
 LEFT JOIN estadopeticion EP ON EP.IdEstado = P.IdEstadoPeticion
 LEFT JOIN tipopeticion TP ON TP.IdTipoPeticion = P.IdTipoPeticion
@@ -108,8 +108,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <a href="../index.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-home fa-fw"></i>  Inicio</a>
       <a href="peticionesPendientes.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-exclamation-circle fa-fw"></i>  Pendientes</a>
       <a href="peticionesPorAprobar.php" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-clock fa-fw"></i>  Por aprobar</a>
-      <a href="peticionesAprobadas" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check-square fa-fw"></i>  Aprobadas</a>
+      <a href="peticionesAprobadas.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check-square fa-fw"></i>  Aprobadas</a>
       <a href="peticionesReasignadas.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-undo fa-fw"></i>  Reasignadas</a>
+      <a href="peticionesSinRespuesta.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-comment-slash fa-fw"></i>  No respuesta</a>
     </div>
   </nav>
 

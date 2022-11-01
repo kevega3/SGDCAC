@@ -24,7 +24,23 @@ class Subida{
 				while (($data = fgetcsv($handle, 1000,";")) !== FALSE) {
 
 					$numero++;
-					$subida = "INSERT INTO `envios`(`IdComunicado`, `nombres`, `apellidos`, `cargo`,`trato1`,`trato2`, `entidad`,`regimen`, `correo`, `estadoEnvio`) VALUES ('$id','$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]','$data[6]','$data[7]','0');";
+
+					$nom = utf8_encode(preg_replace('/[" "]+/', '', $data[0]));
+					$ape = utf8_encode(preg_replace('/[" "]+/', '', $data[1]));
+					$car = utf8_encode(preg_replace('/[" "]+/', '', $data[2]));
+					$tr1 = utf8_encode(preg_replace('/[" "]+/', '', $data[3]));
+					$tr2 = utf8_encode(preg_replace('/[" "]+/', '', $data[4]));
+					$ent = utf8_encode(preg_replace('/[" "]+/', '', $data[5]));
+					$reg = preg_replace('/[" "]+/', '', $data[6]);
+						if($reg==""){
+							$reg="";
+						}else{
+							$reg = ' - '.$reg;
+						}
+					$correo = preg_replace('/[" "]+/', '', $data[7]);
+
+					$subida = "INSERT INTO `envios`(`IdComunicado`, `nombres`, `apellidos`, `cargo`,`trato1`,`trato2`, `entidad`,`regimen`, `correo`, `estadoEnvio`) VALUES ('$id','$nom','$ape','$car','$tr1','$tr2','$ent','$reg','$correo','0');";
+
 
 					$guardar = $conn->prepare($subida);
 
@@ -57,6 +73,11 @@ class Subida{
 			$entidad = $_POST['entidad'];
 			$correo = $_POST['correo'];
 			$regimen = $_POST['regimen'];
+				if($regimen==""){
+					$regimen="";
+				}else{
+					$regimen = ' - '.$regimen;
+				}
 			$trato1 = $_POST['trato1'];
 			$trato2 = $_POST['trato2'];
 

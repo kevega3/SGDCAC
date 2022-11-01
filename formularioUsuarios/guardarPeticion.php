@@ -4,6 +4,7 @@ include("keys.php");
 header("Content-Type: text/html;charset=utf-8");
 require("../pages/class.phpmailer.php");
 require("../pages/class.smtp.php");
+date_default_timezone_set('America/Bogota'); 
 
 class Peticion{
 
@@ -64,12 +65,12 @@ class Peticion{
 
 			}else{
 				echo "<script>alert('El sistema le ha identificado como un robot. Por favor intentelo de nuevo.')</script>";
-				echo "<script>window.location.replace('index.php')</script>";
+				echo "<script>window.location.replace('form.php')</script>";
 			}
 		}
 		else{
 			echo "<script>alert('El sistema le ha identificado como un robot por lo cual no se puede proceder con el registro de su petición. Por favor inténtelo de nuevo.')</script>";
-			echo "<script>window.location.replace('index.php')</script>";
+			echo "<script>window.location.replace('form.php')</script>";
 		}
 	}
 
@@ -113,7 +114,7 @@ class Peticion{
 		}
 		else{
 			echo "<script>alert('Error al guardar la información. Por favor vuelva a intentarlo')</script>";
-			echo "<script>window.location.replace('index.php')</script>";
+			echo "<script>window.location.replace('form.php')</script>";
 		}
 	}
 
@@ -131,13 +132,13 @@ class Peticion{
 			$contador = 0;
 
 			foreach ($this->archivos['tmp_name'] as $key => $tmp_name) {
-				
-				$filename = $this->archivos['name'][$key];
+
+				$filename = Peticion::texto($this->archivos['name'][$key]);
 
 				if ($this->archivos['error'][$key]>0) {
 					
 					echo "<script>alert('Error al cargar el archivo ".$filename."')</script>";
-					echo "<script>window.location.replace('index.php')</script>";
+					echo "<script>window.location.replace('form.php')</script>";
 				}else{
 
 					$permitidos = array("image/jpg","image/png","image/jpeg","application/pdf","image/svg");
@@ -147,7 +148,6 @@ class Peticion{
 
 						if ($this->archivos['size'][$key] <= $limite_kb * 1024) {
 
-							$filename = $this->archivos['name'][$key];
 							$temporal = $this->archivos['tmp_name'][$key];
 							$type = $this->archivos['type'];
 
@@ -172,7 +172,7 @@ class Peticion{
 									$mysqli->query("DELETE FROM historialarchivos WHERE IdPeticion='$this->id'");
 									$mysqli->query("DELETE FROM peticiones WHERE IdPeticion = '$this->id'");
 									echo "<script>alert('El archivo ".$filename." no se guardó. Por favor vuelva a intentarlo.')</script>";
-									echo "<script>window.location.replace('index.php')</script>";
+									echo "<script>window.location.replace('form.php')</script>";
 								}
 
 							}else{
@@ -187,18 +187,18 @@ class Peticion{
 									$mysqli->query("DELETE FROM historialarchivos WHERE IdPeticion='$this->id'");
 									$mysqli->query("DELETE FROM peticiones WHERE IdPeticion = '$this->id'");
 									echo "<script>alert('El archivo ".$filename." no se guardó. Por favor vuelva a intentarlo.')</script>";
-									echo "<script>window.location.replace('index.php')</script>";
+									echo "<script>window.location.replace('form.php')</script>";
 								}
 							}
 
 						}else{
 							echo "<script>alert('El archivo ".$filename." supera la capacidad maxima permitida de peso por archivo.')</script>";
-							echo "<script>window.location.replace('index.php')</script>";
+							echo "<script>window.location.replace('form.php')</script>";
 						}
 
 					}else{
 						echo "<script>alert('El archivo ".$filename." no tiene una extensión permitida.')</script>";
-						echo "<script>window.location.replace('index.php')</script>";
+						echo "<script>window.location.replace('form.php')</script>";
 					}
 				}
 			}
@@ -210,6 +210,57 @@ class Peticion{
 			$conc = md5($key.$this->radicado);
 			echo "<script>window.location.replace('confirmacion.php?Id=$conc')</script>";
 		}
+
+	}
+
+	public function texto($cadena){
+
+    	//Ahora reemplazamos las letras
+		$cadena = str_replace(
+			array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+			array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+			$cadena
+		);
+
+		$cadena = str_replace(
+			array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+			array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+			$cadena );
+
+		$cadena = str_replace(
+			array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+			array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+			$cadena );
+
+		$cadena = str_replace(
+			array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô', 'Ó'),
+			array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O', 'O'),
+			$cadena );
+
+		$cadena = str_replace(
+			array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+			array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+			$cadena );
+
+		$cadena = str_replace(
+			array('ñ', 'Ñ', 'ç', 'Ç'),
+			array('n', 'N', 'c', 'C'),
+			$cadena
+		);
+
+		$exp_regular = array();
+		$exp_regular[0] = '/ /';
+		$exp_regular[1] = '/​/';
+		$exp_regular[2] = '/ /';
+
+		$cadena_nueva = array();
+		$cadena_nueva[0] = '_';
+		$cadena_nueva[1] = '_';
+		$cadena_nueva[2] = '_';
+
+		$filename = strtolower(preg_replace($exp_regular, $cadena_nueva, $cadena));
+
+		return $filename;
 
 	}
 
@@ -253,7 +304,7 @@ class Peticion{
 		<div style='padding: 0px 30px;'>
 		<p>Hola Admin.</p>
 		<p>Se ha registrado una nueva solicitud en el sistema de correspondencia de la Cuenta de Alto Costo</p>
-		<p>Consúltala dando <a href='http://192.168.1.11:81/sgdcac/'>clic aquí</a></p>
+		<p>Consúltala dando <a href='https://cuentadealtocosto.org/sgdcac/'>clic aquí</a></p>
 		</div>
 		<div style='padding: 0px 30px;'>
 		<table style='width: 100%'>

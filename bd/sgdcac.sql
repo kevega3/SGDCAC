@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 25-05-2022 a las 18:29:14
+-- Tiempo de generación: 22-06-2022 a las 15:05:51
 -- Versión del servidor: 5.7.31
 -- Versión de PHP: 7.4.9
 
@@ -36,24 +36,6 @@ CREATE TABLE IF NOT EXISTS `anexos` (
   PRIMARY KEY (`IdAnexo`)
 ) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `anexos`
---
-
-INSERT INTO `anexos` (`IdAnexo`, `numRadicado`, `anexadoA`, `fechaAnexo`) VALUES
-(19, 'CR202203313', 'CR2022033112', '2022-04-01 10:19:38'),
-(18, 'CR202203313', 'CR202203313', '2022-04-01 10:19:38'),
-(17, 'CR202203313', 'CR2022040122', '2022-04-01 10:16:36'),
-(16, 'CR202203313', 'CR202203091', '2022-04-01 10:16:09'),
-(15, 'CR202203091', 'CR202203091', '2022-03-31 08:33:19'),
-(14, 'CR202203091', 'CR202203091', '2022-03-31 08:33:19'),
-(13, 'CR202203091', 'CR202203091', '2022-03-31 08:10:10'),
-(12, 'CR202203091', 'CR202203091', '2022-03-31 08:10:10'),
-(20, 'CR2022051328', 'CR202203091', '2022-05-13 03:42:29'),
-(21, 'CR2022051328', 'CR2022040115', '2022-05-13 03:42:29'),
-(22, 'CR2022051329', 'CR2022040116', '2022-05-13 07:39:01'),
-(23, 'CR202203091\r\n', 'CR2022040117', '2022-05-24 05:58:47');
-
 -- --------------------------------------------------------
 
 --
@@ -76,22 +58,6 @@ CREATE TABLE IF NOT EXISTS `comunicados` (
   KEY `IdCuenta` (`IdCuenta`)
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `comunicados`
---
-
-INSERT INTO `comunicados` (`IdComunicado`, `Nombre`, `Numero`, `Fecha`, `CuerpoCorreo`, `Asunto`, `Texto`, `IdCuenta`, `Enviado`, `FechaCreacion`) VALUES
-(2, 'Comunicado de prueba', 'CAC5021', '2022-04-13', NULL, 'Prueba de asunto', NULL, 0, 1, '2022-04-12 10:02:14'),
-(3, 'Comunicado de prueba', 'CAC5021', '2022-04-13', NULL, 'Prueba de correo', '&lt;p&gt;&lt;b&gt;Respetado doctor (a): &lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Para su informaci&oacute;n y los fines pertinentes le comunico que la Cuenta de Alto Costo le notific&oacute; al Ministerio De Salud y Protecci&oacute;n Social, a la Administradora De Recursos Del Sistema De Seguridad Social En Salud (Adres) y a la Superintendencia Nacional de Salud, mediante el comunicado CAC5119 con fecha 01 de abril de 2022, que la entidad que usted representa certific&oacute; &lt;b&gt;NO TENER CASOS DE HEMOFILIA Y OTRAS COAGULOPAT&Iacute;AS&lt;/b&gt; en el per&iacute;odo comprendido entre el 1 de febrero de 2021 a 31 de enero de 2022.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Lo anterior de conformidad con lo se&ntilde;alado en el art&iacute;culo 2 de la resoluci&oacute;n 123 de 2015, ya que el pasado 30 de marzo de 2022, culmin&oacute; el proceso de recepci&oacute;n de la informaci&oacute;n del registro de pacientes con hemofilia y otras coagulopat&iacute;as que se realiza a trav&eacute;s de la plataforma SISCAC de la Cuenta de Alto Costo.&lt;/p&gt;', 0, NULL, '2022-04-12 10:13:20'),
-(4, 'Pruebas', 'CAC5021', '2022-04-23', NULL, 'Prueba de correo', NULL, 0, NULL, '2022-04-22 11:23:20'),
-(5, 'CAC5022Coosalud', 'CAC5022', '2022-04-28', 'Buenas \r\n\r\nSe env&iacute;as comunicado.', 'Prueba Tatiana', '&lt;p&gt;Cordial saludo,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;De acuerdo con el proceso establecido por la Cuenta de Alto Costo en el manual de auditor&iacute;a para la informaci&oacute;n reportada y relacionada en la resoluci&oacute;n 0123/2015 medici&oacute;n 31 de enero del 2022, nos permitimos informar que la auditor&iacute;a de Hemofilia a nivel nacional se llevar&aacute; a cabo en las fechas comprendidas entre el 18/04/2022 y el 28/04/2022. El auditor designado como l&iacute;der para la entidad por la CAC es Yennis Lorena Chatelain Delgado. a quien puede contactar en el correo electr&oacute;nico ychatelain@cuentadealtocosto.org. La fecha de auditor&iacute;a para su entidad inicia a partir del d&iacute;a 18/04/2022 y finaliza el d&iacute;a 19/04/2022.&lt;/p&gt;&lt;p class=&quot;ql-indent-1&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Para iniciar con el proceso, es necesario que la entidad confirme la asistencia del representante legal a la reuni&oacute;n de apertura y cierre y en caso de que no pueda asistir, debe asignar un apoderado para la reuni&oacute;n y/o desarrollo de la auditor&iacute;a. El apoderado debe contar con el poder firmado por el representante legal, y este debe ser cargado en la carpeta AF de la entidad o enviado al correo electr&oacute;nico del l&iacute;der asignado, m&iacute;nimo dos d&iacute;as antes de la reuni&oacute;n de apertura (m&aacute;ximo al 12 de abril de 2022).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Tambi&eacute;n, se solicita asignar los funcionarios que considere necesarios para dar respuesta a los hallazgos de no calidad identificados diariamente en la auditor&iacute;a de casos, con el fin de estar en contacto permanente con el auditor de la CAC. De otra parte, la entidad debe enviar al correo electr&oacute;nico coordinacionauditoria@cuentadealtocosto.org, una vez reciba el presente comunicado, la siguiente informaci&oacute;n en formato Excel de cada una de las personas encargadas, quienes necesariamente deben estar inscritas a SISCAC:&lt;/p&gt;', 3, NULL, '2022-05-04 03:59:28'),
-(6, 'Prueba de comunicado', 'CAC4', '2022-05-12', NULL, 'Pruebas', NULL, 0, NULL, '2022-05-12 09:20:32'),
-(7, 'Comunicado de prueba', 'CAC4', '2022-05-13', NULL, 'Prueba de correo', NULL, 0, NULL, '2022-05-13 02:36:21'),
-(8, 'Prueba de consecutivo', 'CAC4', '2022-05-13', NULL, 'Muestra para pruebas', NULL, 0, NULL, '2022-05-13 02:52:16'),
-(9, 'Comunicado de prueba', 'CAC5', '2022-05-07', 'Esta es una prueba para el cuerpo del correo', 'Prueba de correo', '&lt;p&gt;De manera atenta me permito confirmar los datos de la delegada de la Cuenta de Alto que participara en la Mesa Nacional de Enfermedades Hu&eacute;rfanas-Raras: &lt;/p&gt;&lt;p&gt;Nombre: Lizbeth Alexandra Acu&ntilde;a Merchan &lt;/p&gt;&lt;p&gt;Cargo: Directora Ejecutiva &lt;/p&gt;&lt;p&gt;Correo: direccion@cuentadealtocosto.org &lt;/p&gt;&lt;p&gt;Contacto: 316 740 24 41 &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Estaremos atentos a recibir los datos correspondientes para participar del encuentro.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;', 0, NULL, '2022-05-13 02:54:03'),
-(10, 'Comunicado Compensar', 'CAC7', '2022-05-13', 'Buenas tardes.\r\n\r\nEnv&iacute;o comunicado de prueba.', 'Pruebas para muestra', '&lt;p&gt;&lt;b&gt;Buen d&iacute;a, cordial saludo &lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;i&gt;Nos permitimos remitir en adjunto las comunicaciones, notificando las entidades del r&eacute;gimen contributivo y subsidiado del mecanismo de C&Aacute;NCER que no consignaron los recursos conforme a la aplicaci&oacute;n de la Resoluci&oacute;n 3339 de 2019 para el mes de&lt;u&gt; noviembre de 2021&lt;/u&gt;&lt;/i&gt;&lt;/p&gt;', 0, NULL, '2022-05-13 07:58:05'),
-(11, 'Comunicado de prueba', 'CAC9', '2022-05-26', NULL, 'Nicolas', NULL, 1, NULL, '2022-05-19 03:34:20');
-
 -- --------------------------------------------------------
 
 --
@@ -113,21 +79,6 @@ CREATE TABLE IF NOT EXISTS `consecutivos` (
   PRIMARY KEY (`IdConsecutivo`),
   KEY `id_tipo_comunicado` (`id_tipo_comunicado`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `consecutivos`
---
-
-INSERT INTO `consecutivos` (`IdConsecutivo`, `numero`, `destinatario`, `institucion`, `tema`, `fecha`, `id_tipo_comunicado`, `responsable`, `quien_elabora`, `reviso`) VALUES
-(1, '5200', 'Nicolas', 'CAC', 'Prueba', '2022-05-12 10:26:19', 1, 'Nicolas', 'Nicolas', 'Nicolas'),
-(2, 'CAC2', 'Nicolas', 'CAC', 'Pruebas', '2022-05-12 12:54:00', 1, 'NicolasS', 'NicolasB', 'NicolasG'),
-(3, 'CAC3', 'Nicolas', 'CAC', 'Tema de prueba', '2022-05-14 14:53:00', 1, 'NicolasS', 'NicolasB', 'NicolasG'),
-(4, 'CAC4', 'Masivo', 'Masivo', 'Muestra para pruebas', '2022-05-13 02:52:16', 1, 'administrativa@cuentadealtocosto.org', 'administrativa@cuentadealtocosto.org', 'Sistema de correspondencia'),
-(5, 'CAC5', 'Masivo', 'Masivo', 'Prueba de correo', '2022-05-13 02:54:03', 1, 'administrativa@cuentadealtocosto.org', 'administrativa@cuentadealtocosto.org', 'Sistema de correspondencia'),
-(6, 'CAC6', 'Nicolas', 'CAC', 'Tema de prueba', '2022-05-20 00:05:00', 1, 'NicolasS', 'NicolasB', 'NicolasG'),
-(7, 'CAC7', 'Masivo', 'Masivo', 'Pruebas para muestra', '2022-05-13 07:58:05', 1, 'administrativa@cuentadealtocosto.org', 'administrativa@cuentadealtocosto.org', 'Sistema de correspondencia'),
-(8, 'CAC8', 'Nicolas', 'CAC', 'Tema de prueba', '2022-05-13 15:25:00', 4, 'NicolasS', 'NicolasB', 'NicolasG'),
-(9, 'CAC9', 'Masivo', 'Masivo', 'Nicolas', '2022-05-19 03:34:20', 1, 'administrativa@cuentadealtocosto.org', 'administrativa@cuentadealtocosto.org', 'Sistema de correspondencia');
 
 -- --------------------------------------------------------
 
@@ -216,24 +167,13 @@ DROP TABLE IF EXISTS `devoluciones`;
 CREATE TABLE IF NOT EXISTS `devoluciones` (
   `IdDevolucion` int(11) NOT NULL AUTO_INCREMENT,
   `numRadicado` varchar(100) NOT NULL,
+  `IdRespuesta` int(11) NOT NULL,
   `fechaDevolucion` datetime NOT NULL,
   `motivo` varchar(5000) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
-  PRIMARY KEY (`IdDevolucion`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `devoluciones`
---
-
-INSERT INTO `devoluciones` (`IdDevolucion`, `numRadicado`, `fechaDevolucion`, `motivo`, `IdUsuario`) VALUES
-(1, 'CR202203091', '2022-03-10 12:55:43', 'test', 2),
-(2, 'CR202203091', '2022-03-10 12:57:35', 'test', 2),
-(3, 'CR202203091', '2022-04-01 11:05:30', 'Prueba de devoluciÃ³n', 1),
-(4, 'CR2022040115', '2022-05-12 01:12:30', 'Rechazo de prueba', 2),
-(5, 'CR2022051329', '2022-05-25 05:17:05', 'Pruebas', 2),
-(6, 'CR2022040116', '2022-05-25 05:19:42', 'test', 2),
-(7, 'CR2022040116', '2022-05-25 05:29:03', 'test', 2);
+  PRIMARY KEY (`IdDevolucion`),
+  KEY `IdRespuesta` (`IdRespuesta`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -257,47 +197,6 @@ CREATE TABLE IF NOT EXISTS `envios` (
   PRIMARY KEY (`IdDestinatario`),
   KEY `IdComunicado` (`IdComunicado`)
 ) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `envios`
---
-
-INSERT INTO `envios` (`IdDestinatario`, `IdComunicado`, `nombres`, `apellidos`, `cargo`, `trato1`, `trato2`, `entidad`, `regimen`, `correo`, `estadoEnvio`) VALUES
-(78, 5, 'Nicolás', 'Gutierrez', 'Analista de software', 'DR', 'Respetado', 'Cuenta de Alto Costo', 'Contributivo', 'ngutierrez@cuentadealtocosto.org,nicolasgutierrez1109@gmail.com,ngutierrezb@ucompensar.edu.co', 1),
-(111, 3, 'Nicolas', 'Gutierrez', 'Analista de software', 'Doctor', 'Estimado', 'Cuenta de Alto Costo', 'Contributivo', 'ngutierrez@cuentadealtocosto.org,nicolasgutierres11@hotmail.com', 0),
-(80, 5, 'Nicolas ', 'Gutierrez Bohorquez', 'Analista de Software', 'Doctor', 'Respetado', 'CAC', 'Contributivo', 'ngutierrez@cuentadealtocosto.org', 1),
-(93, 10, 'Lilianaaaa', 'Barbosa', 'Coordinadora Administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'lbarbosa@cuentadealtocosto.org', 1),
-(92, 9, 'Nicolas', 'Gutierrez', 'Analista de software', 'Doctor', 'Estimado', 'Cuenta de Alto Costo', 'Contributivo', 'ngutierrez@cuentadealtocosto.org,nicolasgutierres11@hotmail.com', 1),
-(76, 5, 'Nicolás', 'BOHORQUEZ', 'Analista de software', 'Doctor', 'Respetado', 'Cuenta de Alto Costo', 'Contributivo', 'ngutierrez@cuentadealtocosto.org,nicolasgutierrez1109@gmail.com,ngutierrezb@ucompensar.edu.co', 1),
-(77, 5, 'Nicolás', 'Bohorquez', 'Auxiliar', 'Dr', 'Estimado', 'CAC', 'Contributivo', 'nicolasgutierres11@hotmail.com', 1),
-(97, 10, 'Tatiana', 'Ceron', 'Auxiliar administrativa', 'Doctora', 'Estimada', 'Cuenta de Alto Costo', 'Contributivo', 'administrativa@cuentadealtocosto.org', 1),
-(96, 10, 'Annie', 'Bermudez', 'Analista administrativa y financiera', 'Doctora', 'Estimada', 'Cuenta de Alto Costo', 'Contributivo', 'abermudez@cuentadealtocosto.org', 1),
-(95, 10, 'María Helena', 'Barrera', 'Auxiliar administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'mbarrera@cuentadealtocosto.org', 1),
-(94, 10, 'Luisaaaa', 'Giraldo', 'Lider de Calidad', 'Doctora', 'Estimada', 'Cuenta de Alto Costo', 'Contributivo', 'lgiraldo@cuentadealtocosto.org', 1),
-(98, 10, 'Nicolas', 'Gutierrez', 'Analista de software', 'Doctor', 'Estimado', 'Cuenta de Alto Costo', 'Contributivo', 'ngutierrez@cuentadealtocosto.org,nicolasgutierres11@hotmail.com', 1),
-(110, 3, 'Tatiana', 'Ceron', 'Auxiliar administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'administrativa@cuentadealtocosto.org', 0),
-(106, 3, 'Liliana', 'Barbosa', 'Coordinadora Administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'lbarbosa@cuentadealtocosto.org', 0),
-(107, 3, 'Luisa', 'Giraldo', 'Lider de Calidad', 'Doctora', 'Estimada', 'Cuenta de Alto Costo', 'Contributivo', 'lgiraldo@cuentadealtocosto.org', 0),
-(108, 3, 'Maria Helena', 'Barrera', 'Auxiliar administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'mbarrera@cuentadealtocosto.org', 0),
-(109, 3, 'Angie', 'Bermudez', 'Analista administrativa y financiera', 'Doctora', 'Estimada', 'Cuenta de Alto Costo', 'Contributivo', 'abermudez@cuentadealtocosto.org', 0),
-(112, 3, 'Liliana', 'Barbosa', 'Coordinadora Administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'lbarbosa@cuentadealtocosto.org', 0),
-(113, 3, 'Luisa', 'Giraldo', 'Lider de Calidad', 'Doctora', 'Estimada', 'Cuenta de Alto Costo', 'Contributivo', 'lgiraldo@cuentadealtocosto.org', 0),
-(114, 3, 'Maria Helena', 'Barrera', 'Auxiliar administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'mbarrera@cuentadealtocosto.org', 0),
-(115, 3, 'Angie', 'Bermudez', 'Analista administrativa y financiera', 'Doctora', 'Estimada', 'Cuenta de Alto Costo', 'Contributivo', 'abermudez@cuentadealtocosto.org', 0),
-(116, 3, 'Tatiana', 'Ceron', 'Auxiliar administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'administrativa@cuentadealtocosto.org', 0),
-(117, 3, 'Nicolas', 'Gutierrez', 'Analista de software', 'Doctor', 'Estimado', 'Cuenta de Alto Costo', 'Contributivo', 'ngutierrez@cuentadealtocosto.org,nicolasgutierres11@hotmail.com', 0),
-(118, 3, 'Liliana', 'Barbosa', 'Coordinadora Administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'lbarbosa@cuentadealtocosto.org', 0),
-(119, 3, 'Luisa', 'Giraldo', 'Lider de Calidad', 'Doctora', 'Estimada', 'Cuenta de Alto Costo', 'Contributivo', 'lgiraldo@cuentadealtocosto.org', 0),
-(120, 3, 'Maria Helena', 'Barrera', 'Auxiliar administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'mbarrera@cuentadealtocosto.org', 0),
-(121, 3, 'Angie', 'Bermudez', 'Analista administrativa y financiera', 'Doctora', 'Estimada', 'Cuenta de Alto Costo', 'Contributivo', 'abermudez@cuentadealtocosto.org', 0),
-(122, 3, 'Tatiana', 'Ceron', 'Auxiliar administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'administrativa@cuentadealtocosto.org', 0),
-(123, 3, 'Nicolas', 'Gutierrez', 'Analista de software', 'Doctor', 'Estimado', 'Cuenta de Alto Costo', 'Contributivo', 'ngutierrez@cuentadealtocosto.org,nicolasgutierres11@hotmail.com', 0),
-(124, 3, 'Liliana', 'Barbosa', 'Coordinadora Administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'lbarbosa@cuentadealtocosto.org', 0),
-(125, 3, 'Luisa', 'Giraldo', 'Lider de Calidad', 'Doctora', 'Estimada', 'Cuenta de Alto Costo', 'Contributivo', 'lgiraldo@cuentadealtocosto.org', 0),
-(126, 3, 'Maria Helena', 'Barrera', 'Auxiliar administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'mbarrera@cuentadealtocosto.org', 0),
-(127, 3, 'Angie', 'Bermudez', 'Analista administrativa y financiera', 'Doctora', 'Estimada', 'Cuenta de Alto Costo', 'Contributivo', 'abermudez@cuentadealtocosto.org', 0),
-(128, 3, 'Tatiana', 'Ceron', 'Auxiliar administrativa', 'Doctora', 'Respetada', 'Cuenta de Alto Costo', 'Contributivo', 'administrativa@cuentadealtocosto.org', 0),
-(129, 3, 'Nicolas', 'Gutierrez', 'Analista de software', 'Doctor', 'Estimado', 'Cuenta de Alto Costo', 'Contributivo', 'ngutierrez@cuentadealtocosto.org,nicolasgutierres11@hotmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -362,47 +261,14 @@ CREATE TABLE IF NOT EXISTS `historialarchivos` (
   `rutaArchivo` varchar(200) NOT NULL,
   PRIMARY KEY (`IdArchivo`),
   KEY `IdPeticion` (`IdPeticion`)
-) ENGINE=MyISAM AUTO_INCREMENT=123 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=126 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `historialarchivos`
 --
 
 INSERT INTO `historialarchivos` (`IdArchivo`, `IdPeticion`, `numRadico`, `nombreArchivo`, `anoSubida`, `mesSubida`, `diaSubida`, `rutaArchivo`) VALUES
-(109, 24, 'CR2022040824', 'ninos (1).jpg', '2022', '04', '08', '../files/2022/04/ninos (1).jpg'),
-(108, 24, 'CR2022040824', 'banner-ranking_2022-1024x341.png', '2022', '04', '08', '../files/2022/04/banner-ranking_2022-1024x341.png'),
-(107, 24, 'CR2022040824', 'adultos (1).jpg', '2022', '04', '08', '../files/2022/04/adultos (1).jpg'),
-(106, 23, 'CR2022040123', 'Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf', '2022', '04', '01', '../files/2022/04/20220401100845Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf'),
-(105, 23, 'CR2022040123', 'Hemofilia_unidad 3_aspectos administrativos_IPS.pdf', '2022', '04', '01', '../files/2022/04/20220401100845Hemofilia_unidad 3_aspectos administrativos_IPS.pdf'),
-(104, 22, 'CR2022040122', 'Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf', '2022', '04', '01', '../files/2022/04/20220401100555Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf'),
-(103, 22, 'CR2022040122', 'Hemofilia_unidad 3_aspectos administrativos_IPS.pdf', '2022', '04', '01', '../files/2022/04/20220401100555Hemofilia_unidad 3_aspectos administrativos_IPS.pdf'),
-(102, 21, 'CR2022040121', 'Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf', '2022', '04', '01', '../files/2022/04/20220401100500Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf'),
-(101, 21, 'CR2022040121', 'Hemofilia_unidad 3_aspectos administrativos_IPS.pdf', '2022', '04', '01', '../files/2022/04/20220401100500Hemofilia_unidad 3_aspectos administrativos_IPS.pdf'),
-(100, 20, 'CR2022040120', 'Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf', '2022', '04', '01', '../files/2022/04/20220401095056Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf'),
-(99, 20, 'CR2022040120', 'Hemofilia_unidad 3_aspectos administrativos_IPS.pdf', '2022', '04', '01', '../files/2022/04/20220401095056Hemofilia_unidad 3_aspectos administrativos_IPS.pdf'),
-(98, 19, 'CR2022040119', 'Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf', '2022', '04', '01', '../files/2022/04/20220401093406Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf'),
-(97, 19, 'CR2022040119', 'Hemofilia_unidad 3_aspectos administrativos_IPS.pdf', '2022', '04', '01', '../files/2022/04/20220401093406Hemofilia_unidad 3_aspectos administrativos_IPS.pdf'),
-(96, 18, 'CR2022040118', 'Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf', '2022', '04', '01', '../files/2022/04/Hemofilia_Unidad3_Aspectos administrativos_EPS.pdf'),
-(95, 18, 'CR2022040118', 'Hemofilia_unidad 3_aspectos administrativos_IPS.pdf', '2022', '04', '01', '../files/2022/04/Hemofilia_unidad 3_aspectos administrativos_IPS.pdf'),
-(94, 17, 'CR2022040117', 'Entrenamiento-integral-ET.jpg', '2022', '04', '01', '../files/2022/04/Entrenamiento-integral-ET.jpg'),
-(93, 16, 'CR2022040116', 'Modulo2Inmersion.pdf', '2022', '04', '01', '../files/2022/04/copy_Modulo2Inmersion.pdf'),
-(92, 15, 'CR2022040115', 'Modulo2Inmersion.pdf', '2022', '04', '01', '../files/2022/04/Modulo2Inmersion.pdf'),
-(91, 14, 'CR2022033114', '26.jpg', '2022', '03', '31', '../files/2022/03/copy_26.jpg'),
-(90, 14, 'CR2022033114', 'Modulo2Inmersion.pdf', '2022', '03', '31', '../files/2022/03/copy_Modulo2Inmersion.pdf'),
-(89, 14, 'CR2022033114', 'Mesa-de-ayuda_v4.png', '2022', '03', '31', '../files/2022/03/copy_Mesa-de-ayuda_v4.png'),
-(110, 25, 'CR2022051325', '220427_sesión presencial PEI cáncer.pdf', '2022', '05', '13', '../files/2022/05/220427_sesión presencial PEI cáncer.pdf'),
-(111, 25, 'CR2022051325', 'Leucemia mieloide aguda adultos.pdf', '2022', '05', '13', '../files/2022/05/Leucemia mieloide aguda adultos.pdf'),
-(112, 26, 'CR2022051326', '220427_sesión presencial PEI cáncer.pdf', '2022', '05', '13', '../files/2022/05/20220513032819220427_sesión presencial PEI cáncer.pdf'),
-(113, 26, 'CR2022051326', 'Leucemia mieloide aguda adultos.pdf', '2022', '05', '13', '../files/2022/05/20220513032819Leucemia mieloide aguda adultos.pdf'),
-(114, 28, 'CR2022051328', 'Mieloma múltiple.pdf', '2022', '05', '13', '../files/2022/05/Mieloma múltiple.pdf'),
-(115, 29, 'CR2022051329', '220427_sesión presencial PEI cáncer.pdf', '2022', '05', '13', '../files/2022/05/20220513073546220427_sesión presencial PEI cáncer.pdf'),
-(116, 29, 'CR2022051329', 'EPS048_VIH_ Acta Apertura_Firmada.pdf', '2022', '05', '13', '../files/2022/05/EPS048_VIH_ Acta Apertura_Firmada.pdf'),
-(117, 30, 'CR2022051830', '220427_sesión presencial PEI cáncer.pdf', '2022', '05', '18', '../files/2022/05/20220518125604220427_sesión presencial PEI cáncer.pdf'),
-(118, 30, 'CR2022051830', 'mpdf (1).pdf', '2022', '05', '18', '../files/2022/05/mpdf (1).pdf'),
-(119, 31, 'CR2022051831', '220427_sesión presencial PEI cáncer.pdf', '2022', '05', '18', '../files/2022/05/20220518125802220427_sesión presencial PEI cáncer.pdf'),
-(120, 31, 'CR2022051831', 'mpdf (1).pdf', '2022', '05', '18', '../files/2022/05/20220518125802mpdf (1).pdf'),
-(121, 38, 'CR2022051938', '220427_sesión presencial PEI cáncer.pdf', '2022', '05', '19', '../files/2022/05/20220519122854220427_sesión presencial PEI cáncer.pdf'),
-(122, 38, 'CR2022051938', 'EPS048_VIH_ Acta Apertura_Firmada.pdf', '2022', '05', '19', '../files/2022/05/20220519122854EPS048_VIH_ Acta Apertura_Firmada.pdf');
+(125, 41, 'CR2022062241', 'Preguntas frecuentes en mujeres con hemofilia.pdf', '2022', '06', '22', '../files/2022/06/Preguntas frecuentes en mujeres con hemofilia.pdf');
 
 -- --------------------------------------------------------
 
@@ -421,19 +287,7 @@ CREATE TABLE IF NOT EXISTS `historialreasignaciones` (
   PRIMARY KEY (`IdReasignacion`),
   KEY `IdUsuarioAsignado` (`IdUsuarioAsignado`),
   KEY `IdAsignadoPor` (`IdAsignadoPor`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `historialreasignaciones`
---
-
-INSERT INTO `historialreasignaciones` (`IdReasignacion`, `IdPeticion`, `IdUsuarioAsignado`, `MotivoReasignacion`, `fechaReasignacion`, `IdAsignadoPor`) VALUES
-(34, 'CR202203091', 1, 'Motivo de prueba', '2022-03-31 08:11:02', 2),
-(33, 'CR202203091', 2, '', '2022-03-10 09:57:32', 1),
-(35, 'CR2022051328', 1, 'Prueba de reasignaciÃ³n', '2022-05-13 03:38:55', 2),
-(36, 'CR2022040117', 2, 'Prueba', '2022-05-20 07:20:50', 2),
-(37, 'CR2022040117', 1, 'Prueba 2', '2022-05-20 07:21:43', 2),
-(38, 'CR2022040117', 2, 'Prueba 3', '2022-05-20 07:23:15', 1);
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -452,30 +306,7 @@ CREATE TABLE IF NOT EXISTS `historialrespuestas` (
   `RutaArchivo` varchar(250) NOT NULL,
   `IdEstadoRespuesta` int(11) NOT NULL,
   PRIMARY KEY (`IdRespuesta`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `historialrespuestas`
---
-
-INSERT INTO `historialrespuestas` (`IdRespuesta`, `numRadicado`, `Respuesta`, `FechaRespuesta`, `IdUsuarioAsignado`, `NombreArchivo`, `RutaArchivo`, `IdEstadoRespuesta`) VALUES
-(1, 'CR202203091', 'test', '2022-03-09', 2, 'aa06a477-8c73-4d5b-ad0d-b8fae857ac77.pdf', '../files/resp/2022/03/051323aa06a477-8c73-4d5b-ad0d-b8fae857ac77.pdf', 3),
-(2, 'CR202203091', 'Pruebaas', '2022-03-09', 2, 'fbf81483-08ee-478a-a19a-8dcc8b7a3a3a.pdf', '../files/resp/2022/03/051605fbf81483-08ee-478a-a19a-8dcc8b7a3a3a.pdf', 3),
-(3, 'CR202203091', 'tewsdf', '2022-03-09', 2, '023441CamScanner 02-21-2022 13.04.pdf', '../files/resp/2022/03/051927023441CamScanner 02-21-2022 13.04.pdf', 3),
-(4, 'CR202203091', 'test', '2022-03-10', 2, '0234411202221000123401_00001.pdf', '../files/resp/2022/03/0759340234411202221000123401_00001.pdf', 3),
-(5, 'CR202203091', 'Mensaje de prueba', '2022-03-10', 2, 'aa06a477-8c73-4d5b-ad0d-b8fae857ac77.pdf', '../files/resp/2022/03/100222aa06a477-8c73-4d5b-ad0d-b8fae857ac77.pdf', 3),
-(6, 'CR202203091', 'test', '2022-03-10', 2, 'modelo_comunicado_solicitud_usuariossiscac.docx', '../files/resp/2022/03/113540modelo_comunicado_solicitud_usuariossiscac.docx', 3),
-(7, 'CR202203091', 'test', '2022-03-10', 2, '0234411202221000123401_00001.pdf', '../files/resp/2022/03/1239510234411202221000123401_00001.pdf', 3),
-(8, 'CR202203091', 'test', '2022-03-10', 2, 'modelo_comunicado_solicitud_usuariossiscac.docx', '../files/resp/2022/03/125626modelo_comunicado_solicitud_usuariossiscac.docx', 3),
-(9, 'CR202203091', 'Prueba de respuesta', '2022-03-31', 1, 'Usuario curso Programa de Entrenamiento Integral.docx', '../files/resp/2022/03/083514Usuario curso Programa de Entrenamiento Integral.docx', 3),
-(10, 'CR202203313', 'Respuesta de prueba', '2022-04-01', 2, 'Usuario curso Programa de Entrenamiento Integral.docx', '../files/resp/2022/04/103343Usuario curso Programa de Entrenamiento Integral.docx', 3),
-(11, 'CR2022040115', 'Prueba de respuesta', '2022-04-08', 2, '220407_Pos-test de recuperaciÃ³n.docx', '../files/resp/2022/04/124955220407_Pos-test de recuperaciÃ³n.docx', 3),
-(12, 'CR2022051328', 'Respuesta de prueba', '2022-05-13', 1, 'Linfoma no Hodgkin.pdf', '../files/resp/2022/05/034535Linfoma no Hodgkin.pdf', 3),
-(13, 'CR2022040115', 'asdasdasdasd', '2022-05-13', 2, 'Linfoma de Hodgkin.pdf', '../files/resp/2022/05/035756Linfoma de Hodgkin.pdf', 3),
-(14, 'CR202203091', 'Respuesta de pruebaaaaaaaaaaaaaaa', '2022-05-13', 1, 'mpdf (1).pdf', '../files/resp/2022/05/040818mpdf (1).pdf', 3),
-(15, 'CR2022051329', 'Hola, esta es mi respuesta', '2022-05-13', 2, 'mpdf (1).pdf', '../files/resp/2022/05/074008mpdf (1).pdf', 3),
-(16, 'CR2022040116', 'Prueba de estado', '2022-05-25', 2, 'GIT_FT_67_Formato control de ingreso datacenter V1.docx', '../files/resp/2022/05/045905GIT_FT_67_Formato control de ingreso datacenter V1.docx', 4),
-(17, 'CR2022040116', 'test', '2022-05-25', 2, 'GIT_FT_Formato control de prestamo de discos duros V1.docx', '../files/resp/2022/05/052757GIT_FT_Formato control de prestamo de discos duros V1.docx', 2);
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1640,14 +1471,6 @@ CREATE TABLE IF NOT EXISTS `observaciones` (
   PRIMARY KEY (`IdObservacion`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `observaciones`
---
-
-INSERT INTO `observaciones` (`IdObservacion`, `IdEstado`, `observacion`, `fechaRegistro`, `numRadicado`, `Respuesta`, `fechaRespuesta`) VALUES
-(7, 1, 'Prueba de envÃ­o de correos', '2022-02-25 10:33:45', 'CR2022020147', NULL, NULL),
-(8, 1, 'Prueba de comentarios', '2022-02-25 01:05:56', 'CR2022021160', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -1904,42 +1727,14 @@ CREATE TABLE IF NOT EXISTS `peticiones` (
   KEY `IdMunicipio` (`IdMunicipio`),
   KEY `IdTipoPoblacion` (`IdTipoPoblacion`),
   KEY `IdUsuarioAsignado` (`IdUsuarioAsignado`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `peticiones`
 --
 
 INSERT INTO `peticiones` (`IdPeticion`, `numRadicado`, `clave`, `IdEstadoPeticion`, `FechaCreacion`, `IdTipoPeticion`, `IdTipoPersona`, `nombreRemitente`, `apellidosRemitente`, `razonSocial`, `idTipoEmpresa`, `IdPais`, `IdDepartamento`, `IdMunicipio`, `Direccion`, `Telefono`, `Movil`, `Correo`, `IdTipoPoblacion`, `temaPeticion`, `Mensaje`, `IdRespuesta`, `numRespuesta`, `IdUsuarioAsignado`, `FechaAprobacion`) VALUES
-(1, 'CR202203091\r\n', '3hvob', 1, '2022-03-09 12:30:11', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 8, 126, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 19, 'Tema de prueba', 'dsfsdfsdf', 14, 'CACE-CR202203091', 1, '2022-05-13 04:12:36'),
-(15, 'CR2022040115', '9j63x', 4, '2022-04-01 08:07:03', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 54, 799, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 15, 'Tema de prueba', 'testetsetst', 13, 'CACE-CR2022040115', 2, '2022-05-13 04:13:16'),
-(3, 'CR202203313', 'ngku8', 4, '2022-03-31 12:13:07', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 15, 'Tema de prueba', 'fdgdfgdfgfdg', 10, 'CACE-CR202203313', 2, '2022-04-01 10:35:29'),
-(13, 'CR2022033113', 'a57hb', 5, '2022-03-31 02:22:06', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 15, 100, 1124, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 16, 'test', 'wefwefwefwef', NULL, NULL, 2, NULL),
-(12, 'CR2022033112', 'nr5gz', 5, '2022-03-31 02:19:33', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 16, 100, 1124, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 16, 'test', 'wefwefwefwef', NULL, NULL, 2, NULL),
-(14, 'CR2022033114', 'bnchx', 5, '2022-03-31 02:22:36', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 15, 100, 1124, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 16, 'test', 'wefwefwefwef', NULL, NULL, 2, NULL),
-(16, 'CR2022040116', '1dwag', 2, '2022-04-01 08:08:20', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 15, 'Tema de prueba', 'testetsetst', 17, 'CACE-CR2022040116', 2, '2022-05-25 05:09:21'),
-(17, 'CR2022040117', 'ky9nl', 2, '2022-04-01 08:09:45', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 8, 127, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 19, 'NOTIFICACIÓN DE ENTIDADES QUE NO CONSIGNARON RECURSOS VIH Y ERC', 'zcxczxczxcxzczxc', NULL, NULL, 2, NULL),
-(18, 'CR2022040118', 'jmtac', 1, '2022-04-01 09:32:40', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 11, 100, 1124, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 14, 'Tema de prueba', 'test', NULL, NULL, 2, NULL),
-(19, 'CR2022040119', 'onscb', 1, '2022-04-01 09:34:06', 9, 2, 'Nicolas', 'Gutierrez', 'Cuenta de Alto Costo', 1, 11, 100, 1124, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 14, 'Tema de prueba', 'test', NULL, NULL, 2, NULL),
-(20, 'CR2022040120', 'd1xfl', 1, '2022-04-01 09:50:56', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 11, 100, 1124, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 14, 'Tema de prueba', 'test', NULL, NULL, 2, NULL),
-(21, 'CR2022040121', 'piz2j', 1, '2022-04-01 10:05:00', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 11, 100, 1124, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 14, 'Tema de prueba', 'test', NULL, NULL, 2, NULL),
-(22, 'CR2022040122', 'r4ayl', 1, '2022-04-01 10:05:55', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 11, 100, 1124, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 14, 'Tema de prueba', 'test', NULL, NULL, 2, NULL),
-(23, 'CR2022040123', '3h4xp', 1, '2022-04-01 10:08:45', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 11, 100, 1124, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 14, 'Tema de prueba', 'test', NULL, NULL, 2, NULL),
-(24, 'CR2022040824', 's80p1', 1, '2022-04-08 12:47:45', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 16, 100, 1124, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 16, 'Tema de prueba', 'xdfdsfsdf', NULL, NULL, 2, NULL),
-(25, 'CR2022051325', 'a268h', 1, '2022-05-13 03:27:14', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 21, 'Tema de prueba', 'Mensaje de prueba para creaciÃ³n de solicitud', NULL, NULL, 2, NULL),
-(26, 'CR2022051326', 'nvg0b', 1, '2022-05-13 03:28:19', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 1, 'Tema de prueba', 'Mensaje de prueba para creaciÃ³n de solicitud', NULL, NULL, 2, NULL),
-(27, 'CR2022051327', 'nkv0w', 1, '2022-05-13 03:29:36', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 21, 'Tema de prueba', 'Mensaje de prueba', NULL, NULL, 2, NULL),
-(28, 'CR2022051328', 'blm5c', 4, '2022-05-13 03:30:27', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 21, 'Tema de prueba', 'Mensaje de prueba', 12, 'CACE-CR2022051328', 1, '2022-05-13 03:46:56'),
-(29, 'CR2022051329', 'o84y3', 2, '2022-05-13 07:35:46', 9, 1, 'Nicolas', 'GutiÃ©rrez BohÃ³rquez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 1, 'NOTIFICACIÓN DE ENTIDADES QUE NO CONSIGNARON RECURSOS VIH Y ERC', 'Mensaje de prueba', 15, NULL, 2, NULL),
-(30, 'CR2022051830', '7omcj', 1, '2022-05-18 12:56:04', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 1, 'Prueba de archivo', 'Mensaje de prueba para subida de archivos', NULL, NULL, 2, NULL),
-(31, 'CR2022051831', 'jirxf', 1, '2022-05-18 12:58:02', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 21, 'Prueba de subida', 'Mensaje de prueba', NULL, NULL, 2, NULL),
-(32, 'CR2022051832', 't92u1', 1, '2022-05-18 01:10:45', 9, 1, 'NicolÃ¡s', 'GutiÃ©rrez BohÃ³rquez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 21, 'Tema de prueba', 'test', NULL, NULL, 2, NULL),
-(33, 'CR2022051833', 'ud2cj', 1, '2022-05-18 01:17:21', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 1, 'Tema de prueba', 'test de archivo bloqueado', NULL, NULL, 2, NULL),
-(34, 'CR2022051834', 'f7e5k', 1, '2022-05-18 01:17:55', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 21, 'Tema de prueba', 'Mensaje', NULL, NULL, 2, NULL),
-(35, 'CR2022051835', 't4kwx', 1, '2022-05-18 01:30:24', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 1, 'Tema de prueba', 'sdfsdfsdf', NULL, NULL, 2, NULL),
-(36, 'CR2022051836', 'zu1r6', 1, '2022-05-18 01:30:59', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 1, 'Tema de prueba', 'sdfsdfsdf', NULL, NULL, 2, NULL),
-(37, 'CR2022051837', '6u8wo', 1, '2022-05-18 01:33:27', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 1, 'Tema de prueba', 'sdfsdfsdf', NULL, NULL, 2, NULL),
-(38, 'CR2022051938', '0laq3', 1, '2022-05-19 12:28:54', 9, 1, 'Nicolas', 'Gutierrez', '0', 24, 1, 100, 1124, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 21, 'test', 'sdfdsfsdfsdfsdfsdf', NULL, NULL, 2, NULL);
+(41, 'CR2022062241', 'x6pzf', 1, '2022-06-22 02:21:20', 9, 1, 'NicolÃ¡s', 'GutiÃ©rrez BohÃ³rquez', '0', 24, 42, 11, 149, 'Carrera 83a #65-61', '4849551', '3102526107', 'ngutierrez@cuentadealtocosto.org', 1, 'CreaciÃ³n de mensaje', 'CreaciÃ³n de mensaje', NULL, NULL, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -1956,13 +1751,6 @@ CREATE TABLE IF NOT EXISTS `rechazos` (
   PRIMARY KEY (`IdRechazo`),
   KEY `IdPeticion` (`IdPeticion`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `rechazos`
---
-
-INSERT INTO `rechazos` (`IdRechazo`, `IdPeticion`, `Motivo`, `Fecha`) VALUES
-(1, 14, 'Sin informaciÃ³n', '2022-04-01 01:11:42');
 
 -- --------------------------------------------------------
 
@@ -1997,23 +1785,16 @@ INSERT INTO `smtp_options` (`IdCorreo`, `nombre`, `correo`, `pass_smtp`) VALUES
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE IF NOT EXISTS `test` (
   `IdPeticion` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` date NOT NULL,
-  `IdEstado` int(11) NOT NULL,
-  PRIMARY KEY (`IdPeticion`),
-  KEY `IdEstado` (`IdEstado`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `test` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`IdPeticion`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `test`
 --
 
-INSERT INTO `test` (`IdPeticion`, `fecha`, `IdEstado`) VALUES
-(1, '2021-08-09', 1),
-(2, '2021-08-09', 1),
-(3, '2021-08-26', 1),
-(4, '2021-08-26', 1),
-(5, '2021-08-26', 1),
-(6, '2021-08-26', 1);
+INSERT INTO `test` (`IdPeticion`, `test`) VALUES
+(13, 'NicolÃ¡s');
 
 -- --------------------------------------------------------
 

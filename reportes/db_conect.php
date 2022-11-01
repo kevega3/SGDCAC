@@ -4,7 +4,8 @@ function ConexionBD(){
 	
     $base_datos = "sgdcac";
     $usuario = "root";
-    $password = "";
+    $password = "cac2020$*-+";
+
     try {
 
         $conn = new PDO('mysql:host=localhost;dbname=' . $base_datos, $usuario, $password);

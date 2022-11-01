@@ -54,8 +54,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <a href="../index.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-home fa-fw"></i>  Inicio</a>
       <a href="peticionesPendientes.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-exclamation-circle fa-fw"></i>  Pendientes</a>
       <a href="peticionesPorAprobar.php" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-clock fa-fw"></i>  Por aprobar</a>
-      <a href="peticionesAprobadas" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check-square fa-fw"></i>  Aprobadas</a>
+      <a href="peticionesAprobadas.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check-square fa-fw"></i>  Aprobadas</a>
       <a href="peticionesReasignadas.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-undo fa-fw"></i>  Reasignadas</a>
+      <a href="peticionesSinRespuesta.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-comment-slash fa-fw"></i>  No respuesta</a>
     </div>
     <?php if ($_SESSION['tipoUsuario'] == 1 || $_SESSION['tipoUsuario'] == 2) {
 
@@ -64,8 +65,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <h5>Administración</h5>
     </div>
     <div class="w3-bar-block">
+      <?php
+        if ($_SESSION['tipoUsuario'] == 1) {?>
       <a href="usuarios.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users-cog fa-fw"></i>  Usuarios</a>
       <a href="files.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-folder-open fa-fw"></i>  Archivos</a>
+      <?php } ?>
       <a href="../reportes/" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-file-download fa-fw"></i>  Reportes</a>
       <a href="../masivos/" class="w3-bar-item w3-button w3-padding"><i class="fab fa-wpforms fa-fw"></i>  Masivos</a>
       <a href="consecutivos.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-list-ol fa-fw"></i>  Consecutivos</a>
@@ -111,11 +115,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         </div>
         <div class="w3-container w3-third">
           <label>Tema</label><br>
-          <input type="text" name="tema" class="w3-input w3-border w3-margin-bottom">
+          <input type="text" name="tema" class="w3-input w3-border w3-margin-bottom" required>
         </div>
         <div class="w3-container w3-third">
           <label>Tipo de comunicado</label><br>
-          <select name="tipo_comunicado" class="w3-input w3-border w3-margin-bottom">
+          <select name="tipo_comunicado" class="w3-input w3-border w3-margin-bottom" required>
             <option>Seleccionar</option>
             <?php 
             include('conexion.php');
@@ -130,20 +134,20 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         </div>
         <div class="w3-container w3-third">
           <label>Fecha</label><br>
-          <input class="w3-input w3-border w3-margin-bottom" type="datetime-local" name="fecha">
+          <input class="w3-input w3-border w3-margin-bottom" type="datetime-local" required name="fecha">
         </div>
         <div class="w3-container w3-third">
           <label>Responsable</label><br>
-          <input type="text" name="responsable" class="w3-input w3-border w3-margin-bottom">
+          <input type="text" name="responsable" required class="w3-input w3-border w3-margin-bottom">
         </div>
 
         <div class="w3-container w3-third">
           <label>Quien elabora</label><br>
-          <input type="text" name="quien_elabora" class="w3-input w3-border w3-margin-bottom">
+          <input type="text" name="quien_elabora" required class="w3-input w3-border w3-margin-bottom">
         </div>
         <div class="w3-container w3-third">
           <label>Reviso</label><br>
-          <input type="text" name="reviso" class="w3-input w3-border w3-margin-bottom">
+          <input type="text" name="reviso" required class="w3-input w3-border w3-margin-bottom">
         </div>
         <div class="w3-container w3-third">
           <input type="submit" name="enviar" value="Separar" class="w3-button w3-block w3-green w3-section w3-padding">
@@ -170,7 +174,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <tbody>
             <?php 
 
-            $buscar = "SELECT * FROM consecutivos";
+            $buscar = "SELECT *, T.Descripcion AS Comunicado FROM consecutivos C INNER JOIN tipocomunicado T ON T.IdTipoComunicado = C.id_tipo_comunicado";
             $resultado = $mysqli->query($buscar);
             while($fila = $resultado->fetch_assoc()){?>
 
@@ -180,7 +184,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
               <td><?php echo $fila['institucion']; ?></td>
               <td><?php echo $fila['tema']; ?></td>
               <td><?php echo $fila['fecha']; ?></td>
-              <td><?php echo $fila['id_tipo_comunicado']; ?></td>
+              <td><?php echo $fila['Comunicado']; ?></td>
               <td><?php echo $fila['responsable']; ?></td>
               <td><?php echo $fila['quien_elabora']; ?></td>
               <td><?php echo $fila['reviso']; ?></td>

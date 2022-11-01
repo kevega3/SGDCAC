@@ -7,14 +7,14 @@ $id = $_GET["Id"];
 $key = 'cu3nt4_d3_4lt0_c05t0';
 include ('../pages/conexion.php');
 
-$sentencia = "SELECT *, EP.Descripcion AS EstadoPeticion,TP.Descripcion AS TipoPeticion, TPS.Descripcion AS TipoPersona, TE.Descripcion AS TipoEmpresa, PA.Nombre AS Pais, DEP.Nombre AS Departamento, Mun.Descripcion AS Municipio, TPL.Descripcion AS Poblacion, H.RutaArchivo AS ArchivoRespuesta FROM peticiones P
+$sentencia = "SELECT *, P.numRadicado AS numRd,EP.Descripcion AS EstadoPeticion,TP.Descripcion AS TipoPeticion, TPS.Descripcion AS TipoPersona, TE.Descripcion AS TipoEmpresa, PA.Nombre AS Pais, DEP.Nombre AS Departamento, Mun.Descripcion AS Municipio, TPL.Descripcion AS Poblacion, H.RutaArchivo AS ArchivoRespuesta FROM peticiones P
 LEFT JOIN estadopeticion EP ON EP.IdEstado = P.IdEstadoPeticion
 LEFT JOIN tipopeticion TP ON TP.IdTipoPeticion = P.IdTipoPeticion
 LEFT JOIN tipopersona TPS ON TPS.IdTipoPersona = P.IdTipoPersona
 LEFT JOIN tipoempresa TE ON TE.IdTipoEmpresa = P.idTipoEmpresa
 LEFT JOIN paises PA ON PA.IdPais = P.IdPais
 LEFT JOIN departamento DEP ON DEP.IdDepartamento = P.IdDepartamento
-LEFT JOIN municipios MUN ON MUN.IdMunicipio = P.IdMunicipio
+LEFT JOIN municipios Mun ON Mun.IdMunicipio = P.IdMunicipio
 LEFT JOIN tipopoblacion TPL ON TPL.IdTipoPoblacion = P.IdTipoPoblacion 
 LEFT JOIN historialrespuestas H ON P.IdRespuesta = H.IdRespuesta
 WHERE MD5(concat('$key',P.numRadicado)) = '$id'";
@@ -50,17 +50,13 @@ $fila = $resultado->fetch_assoc();
 	}
 </style>
 <body class="w3-light-grey">
-	<div class="w3-bar w3-top w3-blue w3-large" style="z-index:4">
 
-		<span class="w3-bar-item w3-left"><img src="../images/logo.svg" style="width: 230px;"></span>
-	</div>
-
-	<div class="w3-main" style="margin-top:43px;">
+	<div class="w3-main">
 		<hr>
 		<div class="w3-panel">
 			<div class="w3-row-padding">
 				<div class="w3-col w3-container w3-white" style="padding: 15px 20px;">
-					<label>INFORMARCIÓN DE LA SOLICITUD CON NÚMERO DE RADICADO <b><?php echo $fila['numRadicado']; ?></b></label>
+					<label>INFORMARCIÓN DE LA SOLICITUD CON NÚMERO DE RADICADO <b><?php echo $fila['numRd']; ?></b></label>
 				</div>
 			</div>
 			<div class="w3-row-padding">
@@ -87,7 +83,7 @@ $fila = $resultado->fetch_assoc();
 							</tr>
 							<tr>
 								<th>DOCUMENTO</th>
-								<td style="background-color: #e4e9ef;padding: 5px;text-align: left;"><a href="../formularioUsuarios/descargarPeticion.php?Id=<?=md5($key.$fila['numRadicado'])?>" target="_blank">Ver documento de radicación</a></td>
+								<td style="background-color: #e4e9ef;padding: 5px;text-align: left;"><a href="../formularioUsuarios/descargarPeticion.php?Id=<?=md5($key.$fila['numRd'])?>" target="_blank">Ver documento de radicación</a></td>
 								<th>DOCUMENTOS ADJUNTOS</th>
 								<td style="background-color: #e4e9ef;padding: 5px;text-align: left;"><a  href="#" onclick="myFunction()">Ver adjuntos</a></td>
 							</tr>

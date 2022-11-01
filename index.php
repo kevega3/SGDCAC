@@ -19,7 +19,7 @@ include ('pages/conexion.php');
 <link rel="stylesheet" href="Fontawesome/css/font-awesome.min.css">
 <link href="Fontawesome/css/all.css" rel="stylesheet">
 <style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+  html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
 <body class="w3-light-grey">
 
@@ -62,9 +62,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <h5>Administración</h5>
       </div>
       <div class="w3-bar-block">
-        <a href="pages/usuarios.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users-cog fa-fw"></i>  Usuarios</a>
-        <a href="pages/files.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-folder-open fa-fw"></i>  Archivos</a>
-        <a href="resportes/" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-file-download fa-fw"></i>  Reportes</a>
+        <?php
+        if ($_SESSION['tipoUsuario'] == 1) {?>
+          <a href="pages/usuarios.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users-cog fa-fw"></i>  Usuarios</a>
+          <a href="pages/files.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-folder-open fa-fw"></i>  Archivos</a>
+        <?php } ?>
+        <a href="reportes/" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-file-download fa-fw"></i>  Reportes</a>
         <a href="masivos/" class="w3-bar-item w3-button w3-padding"><i class="fab fa-wpforms fa-fw"></i>  Masivos</a>
         <a href="pages/consecutivos.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-list-ol fa-fw"></i>  Consecutivos</a>
       </div>
@@ -72,7 +75,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     }
     ?>
   </nav>
-
 
   <!-- Overlay effect when opening sidebar on small screens -->
   <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
@@ -88,7 +90,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <div class="w3-row-padding w3-margin-bottom">
       <div class="w3-quarter" style="margin-top: 10px;">
         <a href="pages/peticionesPendientes.php">
-          <div class="w3-container w3-padding-16" style="background-color: #B90102;color: #FFF;">
+          <div class="w3-container w3-padding-16" style="border-radius:8px;background-color: #B90102;color: #FFF;">
             <div class="w3-left"><i class="fa fa-exclamation-circle w3-xxxlarge"></i></div>
             <div class="w3-right">
               <?php
@@ -105,7 +107,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       </div>
       <div class="w3-quarter" style="margin-top: 10px;">
         <a href="pages/peticionesPorAprobar.php">
-          <div class="w3-container w3-padding-16" style="background-color: #F57801;color: #FFF;">
+          <div class="w3-container w3-padding-16" style="border-radius:8px;background-color: #F57801;color: #FFF;">
             <div class="w3-left"><i class="fa fas fa-clock w3-xxxlarge"></i></div>
             <div class="w3-right">
               <?php
@@ -127,7 +129,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       </div>
       <div class="w3-quarter" style="margin-top: 10px;">
         <a href="pages/peticionesAprobadas.php">
-          <div class="w3-container w3-padding-16" style="background-color: #009788;color: #FFF;">
+          <div class="w3-container w3-padding-16" style="border-radius:8px;background-color: #009788;color: #FFF;">
             <div class="w3-left"><i class="fa fa-check-square w3-xxxlarge"></i></div>
             <div class="w3-right">
               <?php
@@ -144,7 +146,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       </div>
       <div class="w3-quarter" style="margin-top: 10px;">
         <a href="pages/peticionesReasignadas.php">
-          <div class="w3-container w3-padding-16" style="background-color: #70379F;color: #FFF;">
+          <div class="w3-container w3-padding-16" style="border-radius:8px;background-color: #6C45E5;color: #FFF;">
             <div class="w3-left"><i class="fa fa-undo w3-xxxlarge"></i></div>
             <div class="w3-right">
               <?php
@@ -161,7 +163,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       </div>
       <div class="w3-quarter" style="margin-top: 10px;">
         <a href="pages/peticionesSinRespuesta.php">
-          <div class="w3-container w3-padding-16 w3-deep-purple">
+          <div class="w3-container w3-padding-16" style="border-radius: 8px; background-color: #22269E;color: #FFF;">
             <div class="w3-left"><i class="fa fa-comment-slash w3-xxxlarge"></i></div>
             <div class="w3-right">
               <?php
@@ -187,8 +189,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <?php
         if ($_SESSION['tipoUsuario'] == 1) {?>
           <div class="w3-quarter" style="margin-top: 10px;">
-            <a href="pages/Usuarios.php">
-              <div class="w3-container w3-padding-16" style="background-color: #002A7F;color: #FFF;">
+            <a href="pages/usuarios.php">
+              <div class="w3-container w3-padding-16" style="border-radius:8px;background-color: #5B30AF;color: #FFF;">
                 <div class="w3-left"><i class="fa fa-users-cog w3-xxxlarge"></i></div>
                 <div class="w3-right">
                   <?php
@@ -206,7 +208,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           
           <div class="w3-quarter" style="margin-top: 10px;">
             <a href="pages/files.php">
-              <div class="w3-container w3-padding-16" style="background-color: #0071C3;color: #FFF;">
+              <div class="w3-container w3-padding-16" style="border-radius:8px;background-color: #8158CF;color: #FFF;">
                 <div class="w3-left"><i class="fa fa-folder-open w3-xxxlarge"></i></div>
                 <div class="w3-right">
                   <?php
@@ -226,7 +228,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         ?>
         <div class="w3-quarter" style="margin-top: 10px;">
           <a href="reportes/">
-            <div class="w3-container w3-padding-16" style="background-color: #01BDD5;color: #FFF;">
+            <div class="w3-container w3-padding-16" style="border-radius:8px;background-color: #4645D8;color: #FFF;">
               <div class="w3-left"><i class="fa fa-file-download w3-xxxlarge"></i></div>
               <div class="w3-right">
                 <h3><br></h3>
@@ -238,7 +240,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         </div>
         <div class="w3-quarter" style="margin-top: 10px;">
           <a href="masivos/">
-            <div class="w3-container w3-padding-16" style="background-color: #FEB70F;color: #FFF;">
+            <div class="w3-container w3-padding-16" style="border-radius:8px;background-color: #5E9CFE;color: #FFF;">
               <div class="w3-left"><i class="fab fa-wpforms w3-xxxlarge"></i></div>
               <div class="w3-right">
                 <h3><br></h3>
@@ -251,7 +253,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
         <div class="w3-quarter" style="margin-top: 10px;">
           <a href="pages/consecutivos.php">
-            <div class="w3-container w3-padding-16" style="background-color: #70c652;color: #FFF;">
+            <div class="w3-container w3-padding-16" style="border-radius:8px;background-color: #4C6FFF;color: #FFF;">
               <div class="w3-left"><i class="fa fa-list-ol w3-xxxlarge"></i></div>
               <div class="w3-right">
                 <h3><br></h3>
@@ -262,6 +264,49 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           </a>
         </div>
       </div>
+
+
+      <!--<h5><b><i class="fa fa-dashboard"></i> Gestión de contactos</b></h5>
+      <div class="w3-row-padding w3-margin-bottom">
+        <div class="w3-quarter" style="margin-top: 10px;">
+          <a href="contactos/">
+            <div class="w3-container w3-padding-16" style="border-radius:8px;background-color: #4645D8; color: #FFF;">
+              <div class="w3-left"><i class="far fa-address-card w3-xxxlarge"></i></div>
+              <div class="w3-right">
+                <h3><br></h3>
+              </div>
+              <div class="w3-clear"></div>
+              <h4>Contactos</h4>
+            </div>
+          </a>
+        </div>
+
+        <div class="w3-quarter" style="margin-top: 10px;">
+          <a href="contactos/listas.php">
+            <div class="w3-container w3-padding-16" style="border-radius:8px;background-color: #3C77DF;color: #FFF;">
+              <div class="w3-left"><i class="fa fa-list w3-xxxlarge"></i></div>
+              <div class="w3-right">
+                <h3><br></h3>
+              </div>
+              <div class="w3-clear"></div>
+              <h4>Listas</h4>
+            </div>
+          </a>
+        </div>
+        <div class="w3-quarter" style="margin-top: 10px;">
+            <a href="contactos/importarContactos.php">
+              <div class="w3-container w3-padding-16 w3-win8-indigo" style="border-radius:8px;background-color: #62C3E9;color: #FFF;">
+                <div class="w3-left"><i class="fa fal fa-upload w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                  <h3><br></h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>Importar</h4>
+              </div>
+            </a>
+          </div>
+          
+      </div>-->
 
       <?php
     }

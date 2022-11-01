@@ -58,7 +58,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <a href="../pages/peticionesPorAprobar.php" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-clock fa-fw"></i>  Por aprobar</a>
       <a href="../pages/peticionesAprobadas" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check-square fa-fw"></i>  Aprobadas</a>
       <a href="../pages/peticionesReasignadas.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-undo fa-fw"></i>  Reasignadas</a>
-      <a href="index.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-download fa-fw"></i>  Reportes</a>
+      <a href="../pages/peticionesSinRespuesta.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-comment-slash fa-fw"></i>  No respuesta</a>
     </div>
     <?php if ($_SESSION['tipoUsuario'] == 1 || $_SESSION['tipoUsuario'] == 2) {
 
@@ -67,13 +67,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <h5>Administración</h5>
     </div>
     <div class="w3-bar-block">
+      <?php
+    if ($_SESSION['tipoUsuario'] == 1) {?>
       <a href="../pages/usuarios.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users-cog fa-fw"></i>  Usuarios</a>
       <a href="../pages/files.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-folder-open fa-fw"></i>  Archivos</a>
+      <?php } ?>
       <a href="../reportes/" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-file-download fa-fw"></i>  Reportes</a>
       <a href="index.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fab fa-wpforms fa-fw"></i>  Masivos</a>
       <a href="../pages/consecutivos.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-list-ol fa-fw"></i>  Consecutivos</a>
     </div>
-<?php
+    <?php
     }
     ?>
   </nav>
@@ -126,7 +129,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                   <?php
                 }else{
                   ?>
-                  <a href="verComunicado.php?Id=<?php echo $fila['IdComunicado']; ?>" class="botonVer">Ver</a>
+                  <a href="comunicado.php?Id=<?php echo $fila['IdComunicado']; ?>" class="botonVer">Ver</a>
                   <?php
                 }
                 ?>
@@ -154,7 +157,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
             <div class="w3-half">
               <?php include('../pages/gestConsecutivo.php'); $gestionar = new Consecutivo(); ?>
               <label><b>Consecutivo</b></label>
-              <input class="w3-input w3-border w3-margin-bottom" type="text" name="consecutivo" value="<?php $gestionar->buscarUltimo(); ?>" readonly required style="width: 90%;">
+              <input class="w3-input w3-border w3-margin-bottom" type="text" name="consecutivo" readonly value="<?php $gestionar->buscarUltimo(); ?>" required style="width: 90%;">
             </div>
             <div class="w3-half">
               <label><b>Fecha del comunicado</b></label>

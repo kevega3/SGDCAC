@@ -1,5 +1,6 @@
 <?php 
 session_start();
+date_default_timezone_set('America/Bogota'); 
 if (!isset($_SESSION['usuario'])) {
 	header ("Location: ../login/index.php");
 }
@@ -22,7 +23,7 @@ class Gestionar{
 
 
 			$devolver = "
-			INSERT INTO `devoluciones`(`numRadicado`, `fechaDevolucion`, `motivo`, `IdUsuario`) VALUES ('$radicado','$fecha','$motivo','$idDevuelto');
+			INSERT INTO `devoluciones`(`numRadicado`, `IdRespuesta`, `fechaDevolucion`, `motivo`, `IdUsuario`) VALUES ('$radicado','$idR','$fecha','$motivo','$idDevuelto');
 			
 			UPDATE peticiones SET IdEstadoPeticion = '$estado' WHERE numRadicado = '$radicado';
 			UPDATE historialrespuestas SET IdEstadoRespuesta = '2' WHERE IdRespuesta = '$idR'
@@ -64,10 +65,8 @@ class Gestionar{
 		$nombreRs = $fila['NombreR']." ".$fila['ApellidosR'];
 		$correoResponsable = $fila['CorreoR'];
 
-		$smtpHost = "smtp.office365.com";  // Dominio alternativo brindado en el email de alta 
-		$smtpUsuario = "info@cuentadealtocosto.org";  // Mi cuenta de correo
-		$smtpClave = "jcvxrwvsldpmczhd";  // Mi contraseña
-		//$correo="ngutierrez@cuentadealtocosto.org";
+		$motivo = $_POST['motivo'];
+
 		$mensaje = "Mensaje de la CAC";
 
 		$mail = new PHPMailer();
@@ -98,7 +97,8 @@ class Gestionar{
 		<div style='padding: 0px 30px;'>
 		<p>Hola {$nombreRs}.</p>
 		<p>Se ha devuelto la solicitud con número de radicado <b>{$idPeticion}</b>. Por favor vuelve a generar la respuesta.</p>
-		<p>Consúltala dando <a href='http://192.168.1.11:81/sgdcac/'>clic aquí</a></p>
+		<p><b>Motivo</b>: {$motivo}</p>
+		<p>Consúltala dando <a href='https://cuentadealtocosto.org/sgdcac/'>clic aquí</a></p>
 		</div>
 		<div style='padding: 0px 30px;'>
 		<table style='width: 100%'>

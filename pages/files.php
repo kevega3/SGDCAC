@@ -91,6 +91,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <a href="peticionesPorAprobar.php" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-clock fa-fw"></i>  Por aprobar</a>
       <a href="peticionesAprobadas.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check-square fa-fw"></i>  Aprobadas</a>
       <a href="peticionesReasignadas.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-undo fa-fw"></i>  Reasignadas</a>
+      <a href="peticionesSinRespuesta.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-comment-slash fa-fw"></i>  No respuesta</a>
     </div>
     <?php if ($_SESSION['tipoUsuario'] == 1 || $_SESSION['tipoUsuario'] == 2) {
 
@@ -155,7 +156,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                 <td><?php echo $fila['anoSubida']; ?></td>
                 <td><?php echo $fila['mesSubida']; ?></td>
                 <td><?php echo $fila['diaSubida']; ?></td>
-                <td><a href="<?php echo $fila['rutaArchivo']; ?>"><i class="fas fa-eye" style="color: #2152eb!important;" title="Ver"></i></a></td>
+                <td><a href="<?php echo $fila['rutaArchivo']; ?>" target="_blank"><i class="fas fa-eye" style="color: #2152eb!important;" title="Ver"></i></a></td>
               </tr>
             <?php } ?>
           </tbody>
@@ -203,7 +204,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                   }
                   ?>
                 </td>
-                <td><a href="<?php echo $row['RutaArchivo']; ?>"><i class="fas fa-eye" style="color: #2152eb!important;" title="Ver"></i></a></td>
+                <td><a href="<?php echo $row['RutaArchivo']; ?>" target="_blank"><i class="fas fa-eye" style="color: #2152eb!important;" title="Ver"></i></a></td>
               </tr>
             <?php } ?>
           </tbody>

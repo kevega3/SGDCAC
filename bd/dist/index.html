@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Quill 2.0 Table Demo</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/quill/2.0.0-dev.3/quill.snow.min.css'>
+  <link rel='stylesheet' href='https://unpkg.com/quill-table-ui@1.0.5/dist/index.css'>
+
+</head>
+<body>
+  <!-- partial:index.partial.html -->
+  <div class="container">
+    <div class="panel">
+      <div id="snow-container"></div>
+    </div>
+  </div>
+  <button></button>
+  <textarea name="documento" id="documento"></textarea>
+
+  <button id="insert-table">Insert Table</button>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/quill/2.0.0-dev.3/quill.min.js'></script>
+  <script src='https://unpkg.com/quill-table-ui@1.0.5/dist/umd/index.js'></script>
+  <script  src="script.js"></script>
+  <script>
+
+    function logHtmlContent() {
+      console.clear();
+      var test = quill.root.innerHTML;
+      document.getElementById("documento").value = test;
+    }
+  </script>
+</body>
+</html>

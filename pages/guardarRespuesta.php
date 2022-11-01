@@ -9,6 +9,8 @@ if (!isset($_SESSION['usuario'])) {
 
 	class Responder{
 
+		private $filename;
+
 		public function respuesta(){
 
 			if (isset($_POST['responder'])) {
@@ -17,18 +19,21 @@ if (!isset($_SESSION['usuario'])) {
 				$idPeticion = $_POST['idpeticion'];
 				$dir_subida = '../files/resp/'.Date('Y').'/'.Date('m').'/';
 				$hora = Date('his');
-				$archivo_subido = $dir_subida.$hora.basename($file['name']);
+				$reemplazar = Responder::texto($file['name']);
+				$filename = $this->filename;
+
+				$archivo_subido = $dir_subida.$hora.basename($filename);
 				if (!file_exists($dir_subida)) {
 					mkdir($dir_subida,0777,true);
 				}
 				if (!file_exists($archivo_subido)) {
 					if (move_uploaded_file($file['tmp_name'], $archivo_subido)) {
 						
-						$respuesta = utf8_decode($_POST['respuesta']);
+						//$respuesta = utf8_decode($_POST['respuesta']);
+						$respuesta = filter_var($_POST['respuesta'],FILTER_SANITIZE_STRING);
 						$responsable = $_SESSION['IdUsuario'];
 						$fecha = Date('Y-m-d h:i:s');
 						$estado = 3;
-						$filename = $file['name'];
 
 						$insertar = "INSERT INTO `historialrespuestas`(`numRadicado`, `Respuesta`, `FechaRespuesta`, `IdUsuarioAsignado`, `NombreArchivo`, `RutaArchivo`,`IdEstadoRespuesta`) VALUES ('$idPeticion','$respuesta','$fecha','$responsable','$filename','$archivo_subido','3')";
 
@@ -64,6 +69,55 @@ if (!isset($_SESSION['usuario'])) {
 				echo "<script>window.location.replace('Gestionar.php?Id=$idPeticion')</script>";
 			}
 		}
+
+		public function texto($cadena){
+
+    		//Ahora reemplazamos las letras
+			$cadena = str_replace(
+				array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+				array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+				$cadena
+			);
+
+			$cadena = str_replace(
+				array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+				array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+				$cadena );
+
+			$cadena = str_replace(
+				array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+				array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+				$cadena );
+
+			$cadena = str_replace(
+				array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô', 'Ó'),
+				array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O', 'O'),
+				$cadena );
+
+			$cadena = str_replace(
+				array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+				array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+				$cadena );
+
+			$cadena = str_replace(
+				array('ñ', 'Ñ', 'ç', 'Ç'),
+				array('n', 'N', 'c', 'C'),
+				$cadena
+			);
+
+			$exp_regular = array();
+			$exp_regular[0] = '/ /';
+			$exp_regular[1] = '/​/';
+			$exp_regular[2] = '/ /';
+
+			$cadena_nueva = array();
+			$cadena_nueva[0] = '_';
+			$cadena_nueva[1] = '_';
+			$cadena_nueva[2] = '_';
+
+			$this->filename = strtolower(preg_replace($exp_regular, $cadena_nueva, $cadena));
+
+		}
 		public function notificacion(){
 
 			require("conexion.php");
@@ -82,7 +136,7 @@ if (!isset($_SESSION['usuario'])) {
 			$smtpHost = "smtp.office365.com";  // Dominio alternativo brindado en el email de alta 
 			$smtpUsuario = "info@cuentadealtocosto.org";  // Mi cuenta de correo
 			$smtpClave = "jcvxrwvsldpmczhd";  // Mi contraseña
-			$correo="lgiraldo@cuentadealtocosto.org";
+			$correo="gestioncalidad@cuentadealtocosto.org";
 			$mensaje = "Mensaje de la CAC";
 
 			$mail = new PHPMailer();
@@ -113,7 +167,7 @@ if (!isset($_SESSION['usuario'])) {
 		<div style='padding: 0px 30px;'>
 		<p>Hola Dirección.</p>
 		<p>Se ha dado respuesta a la solicitud con número de radicado <b>{$idPeticion}</b></p>
-		<p>Consúltala dando <a href='192.168.1.11:81/sgdcac/'>clic aquí</a></p>
+		<p>Consúltala dando <a href='https://cuentadealtocosto.org/sgdcac/'>clic aquí</a></p>
 		</div>
 		<div style='padding: 0px 30px;'>
 		<table style='width: 100%'>

@@ -60,7 +60,7 @@ $fila = $resultado->fetch_assoc();
       <a href="../pages/peticionesPorAprobar.php" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-clock fa-fw"></i>  Por aprobar</a>
       <a href="../pages/peticionesAprobadas" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check-square fa-fw"></i>  Aprobadas</a>
       <a href="../pages/peticionesReasignadas.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-undo fa-fw"></i>  Reasignadas</a>
-      <a href="index.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-download fa-fw"></i>  Reportes</a>
+      <a href="../pages/peticionesSinRespuesta.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-comment-slash fa-fw"></i>  No respuesta</a>
     </div>
     <?php if ($_SESSION['tipoUsuario'] == 1 || $_SESSION['tipoUsuario'] == 2) {
 
@@ -69,8 +69,11 @@ $fila = $resultado->fetch_assoc();
       <h5>Administración</h5>
     </div>
     <div class="w3-bar-block">
+    <?php
+        if ($_SESSION['tipoUsuario'] == 1) {?>
       <a href="../pages/usuarios.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users-cog fa-fw"></i>  Usuarios</a>
       <a href="../pages/files.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-folder-open fa-fw"></i>  Archivos</a>
+      <?php } ?>
       <a href="../reportes/" class="w3-bar-item w3-button w3-padding"><i class="fa fas fa-file-download fa-fw"></i>  Reportes</a>
       <a href="index.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fab fa-wpforms fa-fw"></i>  Masivos</a>
       <a href="../pages/consecutivos.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-list-ol fa-fw"></i>  Consecutivos</a>
@@ -171,11 +174,11 @@ $fila = $resultado->fetch_assoc();
                   <td>'.$row["entidad"].'</td>
                   <td>'.$selected.'</td>
                   <td>
-                  <input type="checkbox" name="single_select" class="single_select" data-email="'.$row["correo"].'" data-name="'.$row["nombres"].'" />
+                  <input type="checkbox" name="single_select" class="single_select" data-email="'.$row["IdDestinatario"].'" data-name="'.$row["nombres"].'" />
                   </td>
                   <td>
                   <center>
-                  <button type="button" style="padding: 4px 7px;" name="email_button" class="w3-button '.$cssclass.' email_button" id="'.$count.'" data-email="'.$row["correo"].'" data-name="'.$row["nombres"].'" data-action="single">'.$btntext.'</button>
+                  <button type="button" style="padding: 4px 7px;" name="email_button" class="w3-button '.$cssclass.' email_button" id="'.$count.'" data-email="'.$row["IdDestinatario"].'" data-name="'.$row["nombres"].'" data-action="single">'.$btntext.'</button>
                   </center>
                   </td>
                   </tr>
@@ -184,9 +187,7 @@ $fila = $resultado->fetch_assoc();
                 ?>
               </table>
             </div>
-
           </div>
-
         </div>
       </div>
     </div>

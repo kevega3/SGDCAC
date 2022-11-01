@@ -53,7 +53,7 @@ class PDF extends FPDF
 		$this->Ln(5);
 		$this->Cell(170,0,utf8_decode("Consulte el estado de su trámite en nuestra página web"),0,0,'R');
 		$this->Ln(5);
-		$this->Cell(170,0,"https://cuentadealtocosto.org/site/consultasolicitud/",0,0,'R');
+		$this->Cell(170,0,"https://cuentadealtocosto.org/site/consultaweb/",0,0,'R');
 		$this->Ln(5);
 		$this->Cell(170,0,utf8_decode("Código de verificación: ").$clave,0,0,'R');
     // Salto de línea

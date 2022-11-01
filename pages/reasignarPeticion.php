@@ -1,5 +1,6 @@
 <?php 
 session_start();
+date_default_timezone_set('America/Bogota');
 if (!isset($_SESSION['usuario'])) {
 	header ("Location: ../login/index.php");
 }
@@ -95,7 +96,7 @@ class Reasignacion{
 		<div style='padding: 0px 30px;'>
 		<p>Hola {$nombreNuevo}.</p>
 		<p>Se le ha reasignado una solicitud.</p>
-		<p>Consúltela dando <a href='http://192.168.1.11:81/sgdcac/'>clic aquí</a></p>
+		<p>Consúltela dando <a href='https://cuentadealtocosto.org/sgdcac/'>clic aquí</a></p>
 		</div>
 		<div style='padding: 0px 30px;'>
 		<table style='width: 100%'>

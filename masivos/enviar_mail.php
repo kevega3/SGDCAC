@@ -30,11 +30,11 @@ class Correo{
 
 	public function getDatosDestinatarios(){
 		include ('../pages/conexion.php');
-		$obtener = "SELECT * FROM envios WHERE IdComunicado = '$this->idC' AND correo = '$this->correo'";
+		$obtener = "SELECT * FROM envios WHERE IdComunicado = '$this->idC' AND IdDestinatario = '$this->idD'";
 		$resultado = $mysqli->query($obtener);
 		$fila = $resultado->fetch_assoc();
 
-		$this->idD = $fila['IdDestinatario'];
+		$this->correo = $fila['correo'];
 		$this->nombres = $fila['nombres'];
 		$this->apellidos = $fila['apellidos'];
 		$this->cargo = $fila['cargo'];
@@ -61,39 +61,40 @@ class Correo{
 	public function crearDoc(){
 		include_once('previsualizar.php');
 
-		$this->mpdf = new PDF();
+		$this->mpdf = new PDF(['format' => 'Letter']);
 		$this->mpdf->setFecha($this->fecha);
 
 		$html = '
 		<style>
-			body{
-				font-family:"Calibri, sans-serif";
-			}
-			@page {
-				margin-top: 120px;
-				margin-right: 10px;
-				margin-bottom: 120px;
-				background: url("../formularioUsuarios/fpdf/base.jpg");
-				background-image-resize: 6;
-			}
-			.date{
-				width: 100%;
-				text-align: right;
-				padding-top: -3%;
-				font-size: 11px;		
-			}
-			.cuerpo{
-				padding-top: 50px;
-				padding-left: 50px;
-				padding-right: 100px;
-				font-size: 13px;
-				text-align: justify;
-			}
-			.firma{
-				padding-top: 50px;
-				padding-left: 50px;
-				font-size: 13px;
-			}
+		body{
+			font-family:"Calibri, sans-serif";
+			line-height: 20px;
+		}
+		@page {
+			margin-top: 120px;
+			margin-right: 10px;
+			margin-bottom: 120px;
+			background: url("../formularioUsuarios/fpdf/base.jpg");
+			background-image-resize: 6;
+		}
+		.date{
+			width: 100%;
+			text-align: right;
+			padding-top: -4.5%;
+			font-size: 11px;		
+		}
+		.cuerpo{
+			padding-top: 50px;
+			padding-left: 50px;
+			padding-right: 100px;
+			font-size: 13px;
+			text-align: justify;
+		}
+		.firma{
+			padding-top: 0px;
+			padding-left: 50px;
+			font-size: 13px;
+		}
 		</style>
 		<body>
 		<div class="date">
@@ -104,7 +105,7 @@ class Correo{
 		<label>'.$this->trato1.'</label><br>
 		<label><b>'.$this->nombres.' '.$this->apellidos.'</b></label><br>
 		<label>'.$this->cargo.'</label><br>
-		<label>'.$this->entidad.' - '.$this->regimen.'</label>
+		<label>'.$this->entidad.' '.$this->regimen.'</label>
 		</div>
 
 		<div class="cuerpo">
@@ -113,9 +114,10 @@ class Correo{
 		</div>
 
 		<div class="firma">
-		<img style="width: 150px;" src="images/firma.png"/><br>
-		<b>Lizbeth Acuña Merchán</b><br>
-		Directora Ejecutiva
+		Atentamente,<br><br>
+		<img style="width: 300px;" src="images/firma.jpg"/><br>
+		<b>Lizbeth Acuña Merchán<br>
+		Directora ejecutiva</b>
 		</div>
 
 		<body>
@@ -138,14 +140,14 @@ class Correo{
 
 			foreach($_POST['email_data'] as $row)
 			{
-				$this->correo = $row['email'];
+				$this->idD = $row['email'];
 				$iniciar = Correo::getDatosDestinatarios();
 				
 				$iniciar = Correo::crearDoc();
 				$mensaje = str_replace("\n","<br>",$this->cuerpo);
 				$archivo = $this->mpdf->Output('','S');
 
-				$smtpHost = "smtp.office365.com"; 
+				$smtpHost = "smtp.office365.com";
 				$smtpUsuario = $fila['correo'];
 				$smtpClave = $fila['pass_smtp'];
 
@@ -182,45 +184,65 @@ class Correo{
 				</html>
 				";
 
-		$mail->AltBody = "{$mensaje} \n\n ";
+				$mail->AltBody = "{$mensaje} \n\n ";
 		//Enviar un correo electrónico. Devuelve verdadero en caso de éxito o falso en caso de error
-		$mail->SMTPOptions = array(
-			'ssl' => array(
-				'verify_peer' => false,
-				'verify_peer_name' => false,
-				'allow_self_signed' => true
-			)
-		);
 
-		$result = $mail->Send();
+				$adjuntos = "SELECT * FROM adjuntosmasivos WHERE IdComunicado = '$this->idC'";
+				$enc = $mysqli->query($adjuntos);
 
-		if($result){
-			$output = '';
-			$iniciar = Correo::Actualizar();
-		}else
-		{
-			$output .= $mail->ErrorInfo;
+				while($row = $enc->fetch_assoc()){
+					$ruta = $row['ubicacion'];
+					$mail->AddAttachment($ruta);
+				}
 
+
+				$mail->SMTPOptions = array(
+					'ssl' => array(
+						'verify_peer' => false,
+						'verify_peer_name' => false,
+						'allow_self_signed' => true
+					)
+				);
+
+				$result = $mail->Send();
+
+				if($result){
+					$output = '';
+					$iniciar = Correo::Actualizar();
+				}else
+				{
+					$output .= $mail->ErrorInfo;
+
+				}
+
+			}
+
+			if($output == ''){
+				echo 'ok';
+			}else{
+				echo $output;
+			}
+			
 		}
-
-		sleep(5);
-
 	}
 
-	if($output == ''){
-		echo 'ok';
-	}else{
-		echo $output;
+	public function Actualizar(){
+		include ('../pages/conexion.php');
+		$update = "UPDATE envios SET estadoEnvio = '1' WHERE IdDestinatario = '$this->idD'";
+		$resultado = $mysqli->query($update);
+		$revisar = Correo::revisar();
 	}
-	
-}
-}
 
-public function Actualizar(){
-	include ('../pages/conexion.php');
-	$update = "UPDATE envios SET estadoEnvio = '1' WHERE IdDestinatario = '$this->idD'";
-	$resultado = $mysqli->query($update);
-}
+	public function revisar(){
+		include('../pages/conexion.php');
+		$query = "SELECT COUNT(estadoEnvio) AS contador FROM envios WHERE IdComunicado = '$this->idC' AND estadoEnvio = '0'";
+		$res = $mysqli->query($query);
+		$data = $res->fetch_assoc();
+		if ($data['contador']=='0') {
+			$actualizar = "UPDATE comunicados SET Enviado = '1' WHERE IdComunicado = '$this->idC'";
+			$enviar = $mysqli->query($actualizar);
+		}
+	}
 
 }
 $resultado = new Correo();
